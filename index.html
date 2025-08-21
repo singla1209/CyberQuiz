@@ -1,0 +1,162 @@
+<!DOCTYPE html> <!-- Declares the document type as HTML5 -->
+
+<html lang="en">
+<head>
+  <meta charset="utf-8"/> <!-- Sets character encoding to UTF-8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <!-- Makes page responsive -->
+  <title>BrainQuest</title> <!-- Title shown in browser tab -->
+
+  <!-- Linking external CSS -->
+  <link href="css/style.css" rel="stylesheet"/>
+</head>
+<body>
+  <div class="container">
+    <main>
+
+      <!-- ======= AUTH SECTION (Login & Signup) ======= -->
+      <section class="active" id="auth"> <!-- By default active -->
+        <div class="shell">
+          <div class="card-auth">
+
+<div id="brand">
+  <img src="images/brand-logo.png" alt="BrainQuest" style="width:220px; height:auto;"/>
+</div> <!-- App name -->
+            <div class="subtitle">Sign in to start your quizzes</div>
+
+            <!-- Login inputs -->
+            <input id="login-id" placeholder="Email or Mobile*"/>
+            <input id="login-pass" type="password" placeholder="Password*"/>
+            <button class="btn" id="login-btn" style="width:100%">Log In</button>
+
+            <div class="splitter"></div> <!-- Divider line -->
+
+            <!-- Google Sign-In button -->
+            <button class="google-btn" id="google-btn" aria-label="Sign in with Google">
+              <!-- Google SVG icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">...</svg>
+              Sign in with Google
+            </button>
+
+            <div class="splitter"></div> <!-- Divider line -->
+
+            <!-- Signup form -->
+            <div class="tiny" style="margin-bottom:6px">Don't have an account? Create one:</div>
+            <input id="signup-name" placeholder="Full Name*"/>
+            <input id="signup-id" placeholder="Email or Mobile*"/>
+            <input id="signup-pass" type="password" placeholder="Password (min 6)*"/>
+            <button class="btn" id="signup-btn" style="width:100%">Sign Up</button>
+
+            <!-- Message for errors/success -->
+            <p id="auth-msg" style="min-height:22px;margin:.6rem 0 0;color:#ffd966"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======= SUBJECTS SECTION ======= -->
+      <section id="subjects">
+        <div>
+          <h2 id="hello"></h2> <!-- Will show: Hello [User Name] -->
+          <p>Select a subject to begin:</p>
+          <div id="subject-list"></div> <!-- Subjects added dynamically -->
+          <div class="top-actions">
+            <button class="btn secondary" id="logout-1">Logout</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======= CHAPTERS SECTION (depends on subject) ======= -->
+      <section id="chapters">
+        <div>
+          <h2 id="chapters-title">Choose a chapter</h2>
+          <p class="muted" id="chapters-subtitle">NCERT Class 10 • Session 2025–26</p>
+          <div id="chapter-list"></div> <!-- Chapters added dynamically -->
+          <div class="top-actions">
+            <button class="btn secondary" id="back-to-subjects-2">Back to subjects</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======= QUIZ SECTION ======= -->
+      <section id="quiz">
+        <div id="quiz-wrapper">
+          <h2 id="welcome-banner"></h2> <!-- Welcome message with subject -->
+          <div class="stats" id="stats">✅ Correct: 0   |   ❌ Incorrect: 0</div>
+          <div class="muted" id="qprogress" style="text-align:center">Question 1/1</div>
+          <!-- Progress bar -->
+          <div class="bar"><div id="bar-inner"></div></div>
+
+          <!-- Quiz question and options -->
+          <div class="quiz-card">
+            <div id="question">Loading…</div>
+            <div id="options"></div>
+          </div>
+
+          <!-- End screen after quiz is finished -->
+          <div id="end-screen" style="display:none;margin-top:14px;text-align:center"></div>
+
+          <!-- Last 5 results panel -->
+          <div id="results-panel">
+            <h3>Last 5 Results</h3>
+            <div class="results-box">
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:19%">Date &amp; Time</th>
+                    <th style="width:21%">Subject</th>
+                    <th style="width:20%">Name</th>
+                    <th style="width:10%">Correct</th>
+                    <th style="width:10%">Incorrect</th>
+                    <th style="width:20%">Time Taken</th>
+                  </tr>
+                </thead>
+                <tbody id="last5-body">
+                  <tr><td class="muted" colspan="6">Loading…</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Buttons at bottom of quiz -->
+          <div class="top-actions" style="margin-top:14px">
+            <button class="btn secondary" id="back-to-subjects">Choose another subject</button>
+            <button class="btn secondary" id="logout-2">Logout</button>
+          </div>
+
+          <!-- Correct & Wrong sounds -->
+          <audio id="correct-sound" preload="auto" src="correct.mp3"></audio>
+          <audio id="wrong-sound" preload="auto" src="wrong.mp3"></audio>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ======= CONFETTI CELEBRATION OVERLAY ======= -->
+  <canvas id="confetti"></canvas>
+  <div id="celebrate-overlay" aria-hidden="true">
+    <div id="celebrate-card">
+      <div id="big-name"></div> <!-- Shows user name -->
+      <div id="motivation"></div> <!-- Motivational text -->
+      <canvas id="donut" width="180" height="180"></canvas> <!-- Chart for score -->
+      <div style="display:flex;gap:10px;justify-content:center;margin-top:8px">
+        <button class="btn" id="play-again-btn">Play Again</button>
+        <button class="btn secondary" id="celebrate-close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= MODAL POPUP (detailed results) ======= -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <button class="close" id="modal-close" aria-label="Close">✕</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- ================== SCRIPTS ================== -->
+  <script src="js/include.js"></script> <!-- Helper script -->
+  <script type="module" src="js/app.js"></script> <!-- Main app script -->
+<div class="developer-name">© 2025 Arvind Singla</div>
+
+</body>
+</html>
