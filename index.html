@@ -6,52 +6,78 @@
   <link rel="stylesheet" href="Data/css/style.css">
 </head>
 <body>
-  <!-- Authentication -->
-  <section id="auth">
-    <h2>Login / Signup</h2>
-    <input type="email" id="email" placeholder="Email"><br>
-    <input type="password" id="password" placeholder="Password"><br>
-    <button id="signupBtn">Sign Up</button>
-    <button id="loginBtn">Login</button>
-    <button id="googleBtn">Login with Google</button>
+  <!-- Authentication Section -->
+  <section id="auth" class="active">
+    <div class="shell">
+      <div class="card-auth">
+        <div id="brand">CyberQuiz</div>
+        <div class="subtitle">Login / Signup</div>
+
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+
+        <button class="btn" id="signupBtn">Sign Up</button>
+        <button class="btn" id="loginBtn">Login</button>
+
+        <div class="splitter"></div>
+
+        <button class="google-btn" id="googleBtn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+            <path fill="#EA4335" d="M24 9.5c3.4 0 6.3 1.2 8.6 3.6l6.4-6.4C34.6 2.9 29.6 0 24 0 14.7 0 6.7 5.8 2.7 14.1l7.5 5.8C12.3 14.4 17.7 9.5 24 9.5z"/>
+            <path fill="#34A853" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9.1h12.6c-.6 3.2-2.5 6-5.2 7.9l7.5 5.8c4.4-4.1 7.2-10.2 7.2-17.3z"/>
+            <path fill="#4A90E2" d="M9.3 28.7c-1.1-3.2-1.1-6.7 0-9.9l-7.5-5.8c-3.3 6.6-3.3 14.8 0 21.4l7.5-5.7z"/>
+            <path fill="#FBBC05" d="M24 48c6.5 0 12-2.1 16-5.7l-7.5-5.8c-2.1 1.4-4.9 2.3-8.5 2.3-6.3 0-11.7-4.9-13.8-11.5l-7.5 5.8C6.7 42.2 14.7 48 24 48z"/>
+          </svg>
+          Continue with Google
+        </button>
+      </div>
+    </div>
   </section>
 
-  <!-- Subjects -->
+  <!-- Subjects Section -->
   <section id="subjects" style="display:none;">
-    <h2>Select Subject</h2>
-    <div id="subject-list"></div>
-    <button id="logout-1">Logout</button>
+    <div class="shell">
+      <h2>Select Subject</h2>
+      <div id="subject-list"></div>
+      <button class="btn" id="logout-1">Logout</button>
+    </div>
   </section>
 
-  <!-- Chapters -->
+  <!-- Chapters Section -->
   <section id="chapters" style="display:none;">
-    <h2>Select Chapter</h2>
-    <div id="chapter-list"></div>
-    <button id="back-to-subjects-2">Back to Subjects</button>
+    <div class="shell">
+      <h2>Select Chapter</h2>
+      <div id="chapter-list"></div>
+      <button class="btn" id="back-to-subjects-2">Back to Subjects</button>
+    </div>
   </section>
 
-  <!-- Quiz -->
+  <!-- Quiz Section -->
   <section id="quiz" style="display:none;">
-    <h2 id="question"></h2>
-    <div id="options"></div>
-    <div id="end-screen"></div>
+    <div class="shell">
+      <h2 id="question"></h2>
+      <div id="options"></div>
+      <div id="end-screen"></div>
 
-    <button id="back-to-subjects">Back to Subjects</button>
-    <button id="logout-2">Logout</button>
+      <div class="actions">
+        <button class="btn" id="back-to-subjects">Back to Subjects</button>
+        <button class="btn" id="logout-2">Logout</button>
+      </div>
 
-    <h3>Last 5 Results</h3>
-    <table border="1" cellpadding="5">
-      <thead>
-        <tr>
-          <th>Subject</th>
-          <th>Chapter</th>
-          <th>Correct</th>
-          <th>Incorrect</th>
-          <th>Time</th>
-        </tr>
-      </thead>
-      <tbody id="last5-body"></tbody>
-    </table>
+      <h3>Last 5 Results</h3>
+      <table border="1" cellpadding="5">
+        <thead>
+          <tr>
+            <th>Subject</th>
+            <th>Chapter</th>
+            <th>Correct</th>
+            <th>Incorrect</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody id="last5-body"></tbody>
+      </table>
+    </div>
   </section>
 
   <!-- Footer -->
@@ -59,7 +85,7 @@
     <p>Developed by Arvind</p>
   </footer>
 
-  <!-- JS -->
+  <!-- App Logic -->
   <script type="module" src="Data/js/app.js"></script>
 </body>
 </html>
