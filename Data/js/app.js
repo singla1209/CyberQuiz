@@ -1,4 +1,4 @@
-// Firebase setup
+// Firebase SDK imports (CDN)
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 import {
   getAuth,
@@ -14,13 +14,14 @@ import {
 import {
   getFirestore,
   collection,
+  addDoc,
   query,
   orderBy,
   limit,
   getDocs
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-// Config
+// ✅ Firebase config (your project)
 const firebaseConfig = {
   apiKey: "AIzaSyDHMrrJXvUkQ5Dg_j7ekskEqmkP1f73YSs",
   authDomain: "cyberquiz12.firebaseapp.com",
@@ -35,28 +36,29 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
 
-// Keep user logged in
+// ✅ Keep user logged in
 setPersistence(auth, browserLocalPersistence);
 
-// ✅ Section Switching (using .active instead of style.display)
+// ✅ Section Switching (matches your CSS)
 function showSection(id) {
   document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 }
 
-// Auth state
+// ✅ Handle auth state
 onAuthStateChanged(auth, user => {
   if (user) {
     loadSubjects();
+    fetchLastFive(user.uid);
   } else {
     showSection("auth");
   }
 });
 
-// Auth functions
+// ✅ Signup
 document.getElementById("signupBtn").addEventListener("click", async () => {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+  const email = document.getElementById("signup-email").value;
+  const password = document.getElementById("signup-password").value;
   try {
     await createUserWithEmailAndPassword(auth, email, password);
   } catch (e) {
@@ -64,9 +66,10 @@ document.getElementById("signupBtn").addEventListener("click", async () => {
   }
 });
 
+// ✅ Login
 document.getElementById("loginBtn").addEventListener("click", async () => {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+  const email = document.getElementById("login-email").value;
+  const password = document.getElementById("login-password").value;
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (e) {
@@ -74,6 +77,7 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
   }
 });
 
+// ✅ Google login
 document.getElementById("googleBtn").addEventListener("click", async () => {
   try {
     await signInWithPopup(auth, googleProvider);
@@ -82,16 +86,17 @@ document.getElementById("googleBtn").addEventListener("click", async () => {
   }
 });
 
+// ✅ Logout buttons
 document.getElementById("logout-1").addEventListener("click", () => signOut(auth));
 document.getElementById("logout-2").addEventListener("click", () => signOut(auth));
 
-// ✅ Subjects loader
+// ✅ Load subjects
 async function loadSubjects() {
   const subjectList = document.getElementById("subject-list");
   subjectList.innerHTML = "";
 
-  // Fetch folder list dynamically from manifest
-  const subjects = ["Computer Science - 10th", "Computer Science - 11th"]; // add more folders as needed
+  // Add subject folders (dynamic if you expand later)
+  const subjects = ["Computer Science - 10th", "Computer Science - 11th"];
   subjects.forEach(subject => {
     const btn = document.createElement("button");
     btn.className = "btn";
@@ -103,7 +108,7 @@ async function loadSubjects() {
   showSection("subjects");
 }
 
-// ✅ Chapters loader
+// ✅ Load chapters from manifest.json
 async function loadChapters(subject) {
   const chapterList = document.getElementById("chapter-list");
   chapterList.innerHTML = "";
@@ -126,7 +131,7 @@ async function loadChapters(subject) {
 document.getElementById("back-to-subjects").addEventListener("click", () => showSection("subjects"));
 document.getElementById("back-to-subjects-2").addEventListener("click", () => showSection("subjects"));
 
-// ✅ Quiz loader
+// ✅ Load quiz
 async function loadQuiz(subject, chapterFile) {
   const res = await fetch(`Data/questions/${subject}/${chapterFile}`);
   const questions = await res.json();
@@ -167,7 +172,7 @@ async function loadQuiz(subject, chapterFile) {
   showSection("quiz");
 }
 
-// ✅ Save results to Firestore
+// ✅ Save result to Firestore
 async function saveResult(subject, chapter, correct, incorrect) {
   if (!auth.currentUser) return;
   try {
