@@ -1,0 +1,102 @@
+[
+  {
+    "question": "Microsoft Publisher is primarily used for:",
+    "options": { "A": "Programming", "B": "Spreadsheets", "C": "Desktop publishing layouts", "D": "Audio editing" },
+    "correct": "C"
+  },
+  {
+    "question": "In Publisher, a pre-designed project you can customize is called:",
+    "options": { "A": "Master page", "B": "Template", "C": "Macro", "D": "Palette" },
+    "correct": "B"
+  },
+  {
+    "question": "Which feature lets you apply a consistent design quickly in Publisher?",
+    "options": { "A": "Building Blocks", "B": "Themes", "C": "Arrange", "D": "Rulers" },
+    "correct": "B"
+  },
+  {
+    "question": "The 'Master Page' is used to:",
+    "options": { "A": "Insert tables", "B": "Hold repeating elements like headers/footers", "C": "Write code", "D": "Format cells" },
+    "correct": "B"
+  },
+  {
+    "question": "Which tool adjusts spacing and alignment of objects?",
+    "options": { "A": "Mail Merge", "B": "Align/Distribute", "C": "Navigator", "D": "Task Manager" },
+    "correct": "B"
+  },
+  {
+    "question": "Which view helps manage pages in a publication?",
+    "options": { "A": "Page Navigation pane", "B": "Slide Sorter", "C": "Task Scheduler", "D": "Form View" },
+    "correct": "A"
+  },
+  {
+    "question": "To wrap text around an object, you use:",
+    "options": { "A": "Text Wrap", "B": "AutoFit", "C": "WordArt", "D": "Track Changes" },
+    "correct": "A"
+  },
+  {
+    "question": "Which feature allows creating personalized newsletters from a data source?",
+    "options": { "A": "WordArt", "B": "Mail Merge", "C": "Building Blocks", "D": "Arrange" },
+    "correct": "B"
+  },
+  {
+    "question": "Which file format is commonly used to share a final publication for printing?",
+    "options": { "A": "DOCX", "B": "XLSX", "C": "PDF", "D": "TXT" },
+    "correct": "C"
+  },
+  {
+    "question": "The 'Scratch Area' in Publisher is:",
+    "options": { "A": "A notes panel", "B": "An off-page space to hold objects temporarily", "C": "Clipboard history", "D": "Zoom control" },
+    "correct": "B"
+  },
+  {
+    "question": "Which tool creates decorative text effects?",
+    "options": { "A": "Equation Editor", "B": "WordArt", "C": "SmartArt", "D": "PivotTable" },
+    "correct": "B"
+  },
+  {
+    "question": "To check for design issues before printing, which tool is used?",
+    "options": { "A": "Design Checker", "B": "Spell Check", "C": "Compatibility Mode", "D": "Gridlines" },
+    "correct": "A"
+  },
+  {
+    "question": "Which command aligns objects to the exact center of the page?",
+    "options": { "A": "Center Text", "B": "Align Center Both", "C": "Distribute", "D": "Snap to Grid" },
+    "correct": "B"
+  },
+  {
+    "question": "Guides used to align content consistently are called:",
+    "options": { "A": "Rulers", "B": "Baseline Grid", "C": "Layout Guides", "D": "Format Painter" },
+    "correct": "C"
+  },
+  {
+    "question": "Which panel lets you manage and insert pre-made page parts?",
+    "options": { "A": "Building Blocks", "B": "Navigation", "C": "Animations", "D": "Transitions" },
+    "correct": "A"
+  },
+  {
+    "question": "Which image format preserves highest quality for print when embedded?",
+    "options": { "A": "Low-res JPG", "B": "High-res TIFF", "C": "GIF", "D": "BMP" },
+    "correct": "B"
+  },
+  {
+    "question": "To ensure colors print correctly at the press, you should use:",
+    "options": { "A": "RGB only", "B": "CMYK process or spot colors", "C": "Indexed color", "D": "Grayscale only" },
+    "correct": "B"
+  },
+  {
+    "question": "Which option creates multiple business cards per sheet with proper margins?",
+    "options": { "A": "Mail Merge", "B": "Page Setup with multiple copies per sheet", "C": "Watermark", "D": "Recolor" },
+    "correct": "B"
+  },
+  {
+    "question": "To nudge an object precisely in Publisher, you use:",
+    "options": { "A": "Mouse only", "B": "Arrow keys", "C": "Space bar", "D": "Tab key" },
+    "correct": "B"
+  },
+  {
+    "question": "To export a print-ready file with fonts embedded, choose:",
+    "options": { "A": "Save As DOCX", "B": "Publish as PDF/X", "C": "Export as TXT", "D": "Copy/Paste" },
+    "correct": "B"
+  }
+]

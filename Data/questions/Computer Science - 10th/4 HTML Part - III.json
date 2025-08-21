@@ -1,0 +1,102 @@
+[
+  {
+    "question": "Which tag is used to embed an image?",
+    "options": { "A": "<image>", "B": "<img>", "C": "<pic>", "D": "<figure>" },
+    "correct": "B"
+  },
+  {
+    "question": "A full URL like https://example.com/img/pic.png is called:",
+    "options": { "A": "Relative URL", "B": "Absolute URL", "C": "Internal link", "D": "Anchor" },
+    "correct": "B"
+  },
+  {
+    "question": "Which attribute sets the source of an image?",
+    "options": { "A": "href", "B": "src", "C": "ref", "D": "path" },
+    "correct": "B"
+  },
+  {
+    "question": "Which element embeds another HTML page within a page?",
+    "options": { "A": "<frame>", "B": "<iframe>", "C": "<include>", "D": "<embed>" },
+    "correct": "B"
+  },
+  {
+    "question": "To link an external CSS file, which tag is used?",
+    "options": { "A": "<style href='style.css'>", "B": "<link rel='stylesheet' href='style.css'>", "C": "<css src='style.css'>", "D": "<import style='style.css'>" },
+    "correct": "B"
+  },
+  {
+    "question": "Which attribute provides text shown if an image cannot load?",
+    "options": { "A": "title", "B": "alt", "C": "name", "D": "desc" },
+    "correct": "B"
+  },
+  {
+    "question": "Which tag is used to embed audio with controls?",
+    "options": { "A": "<bgm>", "B": "<sound>", "C": "<audio controls>", "D": "<voice>" },
+    "correct": "C"
+  },
+  {
+    "question": "Which tag is used to embed video with controls?",
+    "options": { "A": "<movie>", "B": "<media>", "C": "<video controls>", "D": "<vid>" },
+    "correct": "C"
+  },
+  {
+    "question": "Which link jumps to a section on the same page?",
+    "options": { "A": "mailto link", "B": "Hash/anchor link", "C": "Download link", "D": "External link" },
+    "correct": "B"
+  },
+  {
+    "question": "Which attribute sets the destination URL of a hyperlink?",
+    "options": { "A": "src", "B": "href", "C": "alt", "D": "for" },
+    "correct": "B"
+  },
+  {
+    "question": "Relative URL '../img/pic.png' means:",
+    "options": { "A": "Go up one folder, then img/pic.png", "B": "Go down two folders", "C": "Same folder pic.png", "D": "Root folder pic.png" },
+    "correct": "A"
+  },
+  {
+    "question": "Which element provides a caption for an image inside <figure>?",
+    "options": { "A": "<legend>", "B": "<figcaption>", "C": "<caption>", "D": "<desc>" },
+    "correct": "B"
+  },
+  {
+    "question": "The attribute to open a link in a new tab is:",
+    "options": { "A": "rel", "B": "target='_blank'", "C": "open", "D": "mode='new'" },
+    "correct": "B"
+  },
+  {
+    "question": "Which attribute provides advisory text shown as a tooltip?",
+    "options": { "A": "alt", "B": "title", "C": "tip", "D": "desc" },
+    "correct": "B"
+  },
+  {
+    "question": "Which element defines a clickable image map?",
+    "options": { "A": "<map> with <area>", "B": "<imagemap>", "C": "<polygon>", "D": "<shape>" },
+    "correct": "A"
+  },
+  {
+    "question": "Which attribute hints the browser to preload a video?",
+    "options": { "A": "preload", "B": "autoplay", "C": "loop", "D": "muted" },
+    "correct": "A"
+  },
+  {
+    "question": "Which attribute starts video automatically (use carefully)?",
+    "options": { "A": "autoplay", "B": "controls", "C": "poster", "D": "loop" },
+    "correct": "A"
+  },
+  {
+    "question": "Which attribute repeats media indefinitely?",
+    "options": { "A": "redo", "B": "repeat", "C": "loop", "D": "again" },
+    "correct": "C"
+  },
+  {
+    "question": "Which attribute shows an image before the video plays?",
+    "options": { "A": "poster", "B": "cover", "C": "thumb", "D": "preview" },
+    "correct": "A"
+  },
+  {
+    "question": "Which attribute ensures audio/video plays without sound?",
+    "options": { "A": "quiet", "B": "mute", "C": "volume=0", "D": "muted" },
+    "correct": "D"
+  }
+]

@@ -1,0 +1,102 @@
+[
+  {
+    "question": "HTML stands for:",
+    "options": { "A": "Hyperlinks and Text Markup Language", "B": "Hyper Text Markup Language", "C": "Home Tool Markup Language", "D": "High Text Markup Language" },
+    "correct": "B"
+  },
+  {
+    "question": "Which tag is used to define the main content shown in the browser window?",
+    "options": { "A": "<head>", "B": "<title>", "C": "<body>", "D": "<html>" },
+    "correct": "C"
+  },
+  {
+    "question": "Which tag contains metadata and links to CSS files?",
+    "options": { "A": "<meta>", "B": "<body>", "C": "<head>", "D": "<link>" },
+    "correct": "C"
+  },
+  {
+    "question": "Which declaration is used to define HTML5 document type?",
+    "options": { "A": "<html>", "B": "<!DOCTYPE html>", "C": "<head>", "D": "<title>" },
+    "correct": "B"
+  },
+  {
+    "question": "Which tag defines the page title shown on the browser tab?",
+    "options": { "A": "<caption>", "B": "<h1>", "C": "<title>", "D": "<meta>" },
+    "correct": "C"
+  },
+  {
+    "question": "Which tag is used to create a line break in HTML?",
+    "options": { "A": "<br>", "B": "<hr>", "C": "<p>", "D": "<div>" },
+    "correct": "A"
+  },
+  {
+    "question": "Which tag is used to create a horizontal rule (line)?",
+    "options": { "A": "<line>", "B": "<hr>", "C": "<rule>", "D": "<bar>" },
+    "correct": "B"
+  },
+  {
+    "question": "Which is the correct pair of opening and closing tags?",
+    "options": { "A": "<p> ... </p>", "B": "<img> ... </img>", "C": "<br> ... </br>", "D": "<input> ... </input>" },
+    "correct": "A"
+  },
+  {
+    "question": "Which attribute sets alternative text for an image?",
+    "options": { "A": "title", "B": "alt", "C": "text", "D": "src" },
+    "correct": "B"
+  },
+  {
+    "question": "Which tag defines the largest heading?",
+    "options": { "A": "<h1>", "B": "<h6>", "C": "<head>", "D": "<header>" },
+    "correct": "A"
+  },
+  {
+    "question": "HTML comments are written as:",
+    "options": { "A": "/* comment */", "B": "// comment", "C": "<!-- comment -->", "D": "# comment" },
+    "correct": "C"
+  },
+  {
+    "question": "Which attribute makes a link open in a new tab?",
+    "options": { "A": "href", "B": "name", "C": "id", "D": "target=_blank" },
+    "correct": "D"
+  },
+  {
+    "question": "Which tag is used to define a paragraph?",
+    "options": { "A": "<para>", "B": "<pg>", "C": "<p>", "D": "<par>" },
+    "correct": "C"
+  },
+  {
+    "question": "Which attribute provides the URL of an image?",
+    "options": { "A": "href", "B": "src", "C": "link", "D": "path" },
+    "correct": "B"
+  },
+  {
+    "question": "Which element groups inline elements for styling?",
+    "options": { "A": "<div>", "B": "<span>", "C": "<section>", "D": "<article>" },
+    "correct": "B"
+  },
+  {
+    "question": "Which tag is used to create a hyperlink?",
+    "options": { "A": "<a>", "B": "<link>", "C": "<url>", "D": "<ref>" },
+    "correct": "A"
+  },
+  {
+    "question": "Which is the correct nesting order for an HTML document?",
+    "options": { "A": "<html><body><head>", "B": "<head><html><body>", "C": "<html><head><body>", "D": "<body><html><head>" },
+    "correct": "C"
+  },
+  {
+    "question": "Which tag is semantic in HTML?",
+    "options": { "A": "<b>", "B": "<i>", "C": "<em>", "D": "<font>" },
+    "correct": "C"
+  },
+  {
+    "question": "Whitespace and newlines in HTML are generally:",
+    "options": { "A": "Always preserved", "B": "Collapsed by default", "C": "Removed completely", "D": "Turned into <br>" },
+    "correct": "B"
+  },
+  {
+    "question": "Which element represents a generic block container?",
+    "options": { "A": "<span>", "B": "<div>", "C": "<strong>", "D": "<small>" },
+    "correct": "B"
+  }
+]

@@ -1,0 +1,57 @@
+[
+  {
+    "question": "________ systems were traditional systems for the storage of facts in a manual way.",
+    "options": { "A": "File-Based Data Storage", "B": "Cloud Storage", "C": "Data Warehouse", "D": "Relational DBMS" },
+    "correct": "A"
+  },
+  {
+    "question": "________ can be referred as a logical structure of the Database.",
+    "options": { "A": "Data Model", "B": "Data Link", "C": "Data Flow", "D": "Data Chain" },
+    "correct": "A"
+  },
+  {
+    "question": "The total no of records present in a table is called ________ of a relation.",
+    "options": { "A": "Cardinality", "B": "Degree", "C": "Tuple Count", "D": "Attribute Size" },
+    "correct": "A"
+  },
+  {
+    "question": "The ________ key refers to identify all the records uniquely in a particular column.",
+    "options": { "A": "Primary", "B": "Candidate", "C": "Secondary", "D": "Reference" },
+    "correct": "A"
+  },
+  {
+    "question": "________ is a standardized language which provides commands to define the storage groups, different structures and objects in a database.",
+    "options": { "A": "DDL", "B": "HTML", "C": "XML", "D": "JSON" },
+    "correct": "A"
+  },
+  {
+    "question": "RDBMS stands for?",
+    "options": { "A": "Relational Database Management System", "B": "Random Data Model System", "C": "Regional Database Mapping Structure", "D": "Read-Only Database Management Service" },
+    "correct": "A"
+  },
+  {
+    "question": "DML stands for?",
+    "options": { "A": "Data Manipulation Language", "B": "Database Managing Logic", "C": "Data Modeling Language", "D": "Direct Memory Layout" },
+    "correct": "A"
+  },
+  {
+    "question": "DDL stands for?",
+    "options": { "A": "Data Definition Language", "B": "Dynamic Database Logic", "C": "Direct Data Link", "D": "Database Distribution Layer" },
+    "correct": "A"
+  },
+  {
+    "question": "DBMS stands for?",
+    "options": { "A": "Database Management System", "B": "Data Backup Management Software", "C": "Distributed Binary Management Service", "D": "Data Block Mapping Structure" },
+    "correct": "A"
+  },
+  {
+    "question": "DBA stands for?",
+    "options": { "A": "Database Administrator", "B": "Data Backup Agent", "C": "Dynamic Binary Analyzer", "D": "Database Accessor" },
+    "correct": "A"
+  },
+  {
+    "question": "SQL stands for?",
+    "options": { "A": "Structured Query Language", "B": "Simple Question Language", "C": "System Query Logic", "D": "Sequential Queue Language" },
+    "correct": "A"
+  }
+]
