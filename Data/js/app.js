@@ -26,7 +26,8 @@ const firebaseConfig = {
   apiKey: "AIzaSyDHMrrJXvUkQ5Dg_j7ekskEqmkP1f73YSs",
   authDomain: "cyberquiz12.firebaseapp.com",
   projectId: "cyberquiz12",
-  storageBucket: "cyberquiz12.appspot.com",
+  storageBucket: "cyberquiz12.firebasestorage.app",
+
   messagingSenderId: "611229251719",
   appId: "1:611229251719:web:851d64457f7ecfefcb6022"
 };
@@ -243,3 +244,4 @@ function celebrate(correct, total) {
     ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 5, 5);
   }
 }
+
