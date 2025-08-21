@@ -12,13 +12,13 @@ export {
 
 /* ---------- Config (your existing project) ---------- */
 const firebaseConfig = {
-  apiKey: "AIzaSyBWTOgHmlJmCtpb2LQ7g3wj_IMsTwyTNDE",
-  authDomain: "quizzy-ea14d.firebaseapp.com",
-  projectId: "quizzy-ea14d",
-  storageBucket: "quizzy-ea14d.appspot.com",
-  messagingSenderId: "452576898646",
-  appId: "1:452576898646:web:9fa8dbc2e106bcce8615f7",
-  measurementId: "G-VKNVF4YZCB"
+  apiKey: "AIzaSyDHMrrJXvUkQ5Dg_j7ekskEqmkP1f73YSs",
+  authDomain: "cyberquiz12.firebaseapp.com",
+  projectId: "cyberquiz12",
+  storageBucket: "cyberquiz12.firebasestorage.app",
+  messagingSenderId: "611229251719",
+  appId: "1:611229251719:web:851d64457f7ecfefcb6022",
+  measurementId: ""
 };
 
 import { initializeApp as _init } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
