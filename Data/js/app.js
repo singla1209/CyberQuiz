@@ -21,26 +21,25 @@ import {
   getDocs
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-// ✅ Firebase config
+// ✅ Firebase config (your working one)
 const firebaseConfig = {
   apiKey: "AIzaSyDHMrrJXvUkQ5Dg_j7ekskEqmkP1f73YSs",
   authDomain: "cyberquiz12.firebaseapp.com",
   projectId: "cyberquiz12",
-  storageBucket: "cyberquiz12.firebasestorage.app",
-
+  storageBucket: "cyberquiz12.firebasestorage.app",   // ✅ Correct bucket
   messagingSenderId: "611229251719",
   appId: "1:611229251719:web:851d64457f7ecfefcb6022"
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getFirestore(app);
+const db   = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
 
 // ✅ Keep user logged in
 setPersistence(auth, browserLocalPersistence);
 
-// ✅ Section Switching (matches your CSS)
+// ✅ Section switching (your index uses .active)
 function showSection(id) {
   document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
@@ -91,12 +90,11 @@ document.getElementById("google-btn").addEventListener("click", async () => {
 document.getElementById("logout-1").addEventListener("click", () => signOut(auth));
 document.getElementById("logout-2").addEventListener("click", () => signOut(auth));
 
-// ✅ Load subjects
+// ✅ Subjects (manual, like your old code)
 async function loadSubjects() {
   const subjectList = document.getElementById("subject-list");
   subjectList.innerHTML = "";
 
-  // Add subject folders (dynamic if you expand later)
   const subjects = ["Computer Science - 10th", "Computer Science - 11th"];
   subjects.forEach(subject => {
     const btn = document.createElement("button");
@@ -109,14 +107,27 @@ async function loadSubjects() {
   showSection("subjects");
 }
 
-// ✅ Load chapters from manifest.json
+// ✅ Chapters (direct JSON files, no manifest)
 async function loadChapters(subject) {
   const chapterList = document.getElementById("chapter-list");
   chapterList.innerHTML = "";
 
-  const manifestUrl = `Data/questions/${subject}/manifest.json`;
-  const res = await fetch(manifestUrl);
-  const chapters = await res.json();
+  // Manually list JSON files here (like your original approach)
+  let chapters = [];
+  if (subject === "Computer Science - 10th") {
+    chapters = [
+      "1 Office Tools.json",
+      "2 HTML PART - 1.json",
+      "3 HTML PART - 2.json",
+      "4 HTML PART - 3.json",
+      "5 Operating System.json"
+    ];
+  } else if (subject === "Computer Science - 11th") {
+    chapters = [
+      "1 Python Basics.json",
+      "2 Data Structures.json"
+    ];
+  }
 
   chapters.forEach(chapter => {
     const btn = document.createElement("button");
@@ -132,7 +143,7 @@ async function loadChapters(subject) {
 document.getElementById("back-to-subjects").addEventListener("click", () => showSection("subjects"));
 document.getElementById("back-to-subjects-2").addEventListener("click", () => showSection("subjects"));
 
-// ✅ Quiz loader
+// ✅ Quiz
 async function loadQuiz(subject, chapterFile) {
   const res = await fetch(`Data/questions/${subject}/${chapterFile}`);
   const questions = await res.json();
@@ -167,14 +178,13 @@ async function loadQuiz(subject, chapterFile) {
 
     saveResult(subject, chapterFile, correct, questions.length - correct);
     fetchLastFive(auth.currentUser.uid);
-    celebrate(correct, questions.length);
   }
 
   renderQuestion();
   showSection("quiz");
 }
 
-// ✅ Save result to Firestore
+// ✅ Save result
 async function saveResult(subject, chapter, correct, incorrect) {
   if (!auth.currentUser) return;
   try {
@@ -216,32 +226,3 @@ async function fetchLastFive(uid) {
     tbody.appendChild(tr);
   });
 }
-
-// ✅ Celebration overlay
-function celebrate(correct, total) {
-  const overlay = document.getElementById("celebrate-overlay");
-  const motivation = document.getElementById("motivation-text");
-  const percent = Math.round((correct / total) * 100);
-
-  if (percent === 100) {
-    motivation.textContent = "Excellent! Perfect Score 🎉";
-  } else if (percent >= 70) {
-    motivation.textContent = "Great job! Keep it up 👍";
-  } else {
-    motivation.textContent = "Keep practicing, you’ll get there 💪";
-  }
-
-  overlay.classList.remove("hidden");
-  setTimeout(() => overlay.classList.add("hidden"), 4000);
-
-  // Simple confetti effect (canvas overlay)
-  const canvas = document.getElementById("confetti");
-  const ctx = canvas.getContext("2d");
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  for (let i = 0; i < 100; i++) {
-    ctx.fillStyle = `hsl(${Math.random() * 360}, 100%, 50%)`;
-    ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 5, 5);
-  }
-}
-
