@@ -21,7 +21,7 @@ import {
   getDocs
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-// ✅ Firebase config (your project)
+// ✅ Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyDHMrrJXvUkQ5Dg_j7ekskEqmkP1f73YSs",
   authDomain: "cyberquiz12.firebaseapp.com",
@@ -45,7 +45,7 @@ function showSection(id) {
   document.getElementById(id).classList.add("active");
 }
 
-// ✅ Handle auth state
+// ✅ Auth state
 onAuthStateChanged(auth, user => {
   if (user) {
     loadSubjects();
@@ -56,9 +56,9 @@ onAuthStateChanged(auth, user => {
 });
 
 // ✅ Signup
-document.getElementById("signupBtn").addEventListener("click", async () => {
-  const email = document.getElementById("signup-email").value;
-  const password = document.getElementById("signup-password").value;
+document.getElementById("signup-btn").addEventListener("click", async () => {
+  const email = document.getElementById("signup-id").value;
+  const password = document.getElementById("signup-pass").value;
   try {
     await createUserWithEmailAndPassword(auth, email, password);
   } catch (e) {
@@ -67,9 +67,9 @@ document.getElementById("signupBtn").addEventListener("click", async () => {
 });
 
 // ✅ Login
-document.getElementById("loginBtn").addEventListener("click", async () => {
-  const email = document.getElementById("login-email").value;
-  const password = document.getElementById("login-password").value;
+document.getElementById("login-btn").addEventListener("click", async () => {
+  const email = document.getElementById("login-id").value;
+  const password = document.getElementById("login-pass").value;
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (e) {
@@ -78,7 +78,7 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
 });
 
 // ✅ Google login
-document.getElementById("googleBtn").addEventListener("click", async () => {
+document.getElementById("google-btn").addEventListener("click", async () => {
   try {
     await signInWithPopup(auth, googleProvider);
   } catch (e) {
@@ -131,7 +131,7 @@ async function loadChapters(subject) {
 document.getElementById("back-to-subjects").addEventListener("click", () => showSection("subjects"));
 document.getElementById("back-to-subjects-2").addEventListener("click", () => showSection("subjects"));
 
-// ✅ Load quiz
+// ✅ Quiz loader
 async function loadQuiz(subject, chapterFile) {
   const res = await fetch(`Data/questions/${subject}/${chapterFile}`);
   const questions = await res.json();
@@ -166,6 +166,7 @@ async function loadQuiz(subject, chapterFile) {
 
     saveResult(subject, chapterFile, correct, questions.length - correct);
     fetchLastFive(auth.currentUser.uid);
+    celebrate(correct, questions.length);
   }
 
   renderQuestion();
@@ -213,4 +214,32 @@ async function fetchLastFive(uid) {
     `;
     tbody.appendChild(tr);
   });
+}
+
+// ✅ Celebration overlay
+function celebrate(correct, total) {
+  const overlay = document.getElementById("celebrate-overlay");
+  const motivation = document.getElementById("motivation-text");
+  const percent = Math.round((correct / total) * 100);
+
+  if (percent === 100) {
+    motivation.textContent = "Excellent! Perfect Score 🎉";
+  } else if (percent >= 70) {
+    motivation.textContent = "Great job! Keep it up 👍";
+  } else {
+    motivation.textContent = "Keep practicing, you’ll get there 💪";
+  }
+
+  overlay.classList.remove("hidden");
+  setTimeout(() => overlay.classList.add("hidden"), 4000);
+
+  // Simple confetti effect (canvas overlay)
+  const canvas = document.getElementById("confetti");
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  for (let i = 0; i < 100; i++) {
+    ctx.fillStyle = `hsl(${Math.random() * 360}, 100%, 50%)`;
+    ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 5, 5);
+  }
 }
