@@ -1,273 +1,211 @@
-/* ================================
-   Firebase Setup
-================================ */
+// Firebase setup
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-import { 
-  getAuth, GoogleAuthProvider, 
-  createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup,
-  setPersistence, browserLocalPersistence, signOut, onAuthStateChanged 
+import {
+  getAuth,
+  GoogleAuthProvider,
+  setPersistence,
+  browserLocalPersistence,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  signOut
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-import { 
-  getFirestore, collection, addDoc, serverTimestamp,
-  query, where, orderBy, limit, getDocs 
+import {
+  getFirestore,
+  collection,
+  query,
+  orderBy,
+  limit,
+  getDocs
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
+// Config
 const firebaseConfig = {
   apiKey: "AIzaSyDHMrrJXvUkQ5Dg_j7ekskEqmkP1f73YSs",
   authDomain: "cyberquiz12.firebaseapp.com",
   projectId: "cyberquiz12",
-  storageBucket: "cyberquiz12.appspot.com",   // fixed bucket
+  storageBucket: "cyberquiz12.appspot.com",
   messagingSenderId: "611229251719",
   appId: "1:611229251719:web:851d64457f7ecfefcb6022"
 };
 
-const app  = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db   = getFirestore(app);
+const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
 
-/* ---------- Persistence ---------- */
-try {
-  await setPersistence(auth, browserLocalPersistence);
-  console.log("[Auth] Persistence set to browserLocalPersistence");
-} catch (e) {
-  console.warn("[Auth] Could not set persistence:", e);
-}
+// Keep user logged in
+setPersistence(auth, browserLocalPersistence);
 
-/* ================================
-   Firestore Helpers
-================================ */
-
-async function saveResult(userId, subject, chapter, correct, incorrect, timeTaken) {
-  try {
-    await addDoc(collection(db, "quiz_results"), {
-      userId,
-      subject,
-      chapter,
-      correct,
-      incorrect,
-      timeTaken,
-      timestamp: serverTimestamp()
-    });
-    console.log("Result saved to Firestore!");
-  } catch (err) {
-    console.error("Error saving result:", err);
-  }
-}
-
-async function fetchLastFive(userId) {
-  try {
-    const q = query(
-      collection(db, "quiz_results"),
-      where("userId", "==", userId),
-      orderBy("timestamp", "desc"),
-      limit(5)
-    );
-
-    const querySnapshot = await getDocs(q);
-    const results = [];
-    querySnapshot.forEach(doc => results.push(doc.data()));
-    return results;
-  } catch (err) {
-    console.error("Error fetching last 5 results:", err);
-    return [];
-  }
-}
-
-/* ================================
-   Quiz Logic
-================================ */
-
-const RAW_BASE = "https://singla1209.github.io/CyberQuiz/Data/questions/";
-let currentUser = null;
-let currentSubject = "";
-let currentChapter = "";
-let questions = [];
-let qIndex = 0, correctCount = 0, incorrectCount = 0, startTime = 0;
-
-function titleFromFilename(name) {
-  return name.replace(".json", "").replace(/[_-]/g, " ");
-}
-
+// ✅ Section Switching (using .active instead of style.display)
 function showSection(id) {
-  document.querySelectorAll("section").forEach(s => s.style.display = "none");
-  document.getElementById(id).style.display = "block";
+  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
 }
 
-/* ----- Subjects ----- */
-function loadSubjects() {
-  const list = document.getElementById("subject-list");
-  list.innerHTML = "";
+// Auth state
+onAuthStateChanged(auth, user => {
+  if (user) {
+    loadSubjects();
+  } else {
+    showSection("auth");
+  }
+});
 
-  const subjects = ["Computer Science - 10th", "Computer Science - 11th"];
-  subjects.forEach(sub => {
+// Auth functions
+document.getElementById("signupBtn").addEventListener("click", async () => {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+  } catch (e) {
+    alert(e.message);
+  }
+});
+
+document.getElementById("loginBtn").addEventListener("click", async () => {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+  } catch (e) {
+    alert(e.message);
+  }
+});
+
+document.getElementById("googleBtn").addEventListener("click", async () => {
+  try {
+    await signInWithPopup(auth, googleProvider);
+  } catch (e) {
+    alert(e.message);
+  }
+});
+
+document.getElementById("logout-1").addEventListener("click", () => signOut(auth));
+document.getElementById("logout-2").addEventListener("click", () => signOut(auth));
+
+// ✅ Subjects loader
+async function loadSubjects() {
+  const subjectList = document.getElementById("subject-list");
+  subjectList.innerHTML = "";
+
+  // Fetch folder list dynamically from manifest
+  const subjects = ["Computer Science - 10th", "Computer Science - 11th"]; // add more folders as needed
+  subjects.forEach(subject => {
     const btn = document.createElement("button");
-    btn.textContent = sub;
-    btn.onclick = () => loadChapters(sub);
-    list.appendChild(btn);
+    btn.className = "btn";
+    btn.textContent = subject;
+    btn.addEventListener("click", () => loadChapters(subject));
+    subjectList.appendChild(btn);
   });
 
   showSection("subjects");
 }
 
-/* ----- Chapters ----- */
+// ✅ Chapters loader
 async function loadChapters(subject) {
-  currentSubject = subject;
-  const url = RAW_BASE + subject + "/manifest.json";
+  const chapterList = document.getElementById("chapter-list");
+  chapterList.innerHTML = "";
 
-  try {
-    const res = await fetch(url, { cache: "no-store" });
-    const files = await res.json();
+  const manifestUrl = `Data/questions/${subject}/manifest.json`;
+  const res = await fetch(manifestUrl);
+  const chapters = await res.json();
 
-    const list = document.getElementById("chapter-list");
-    list.innerHTML = "";
-
-    files.forEach(fname => {
-      const btn = document.createElement("button");
-      btn.textContent = titleFromFilename(fname);
-      btn.onclick = () => startChapterQuiz(fname);
-      list.appendChild(btn);
-    });
-
-    showSection("chapters");
-  } catch (e) {
-    console.error("Error loading manifest:", e);
-    alert("Could not load chapters for " + subject);
-  }
-}
-
-/* ----- Quiz ----- */
-async function startChapterQuiz(filename) {
-  currentChapter = filename;
-  const url = RAW_BASE + currentSubject + "/" + filename;
-
-  try {
-    const res = await fetch(url, { cache: "no-store" });
-    questions = await res.json();
-
-    qIndex = 0;
-    correctCount = 0;
-    incorrectCount = 0;
-    startTime = Date.now();
-
-    showSection("quiz");
-    showQuestion();
-  } catch (e) {
-    console.error("Error loading quiz:", e);
-    alert("Could not load quiz file");
-  }
-}
-
-function showQuestion() {
-  const qEl = document.getElementById("question");
-  const optEl = document.getElementById("options");
-  const endEl = document.getElementById("end-screen");
-
-  if (qIndex >= questions.length) {
-    finishQuiz();
-    return;
-  }
-
-  const q = questions[qIndex];
-  qEl.textContent = (qIndex + 1) + ". " + q.question;
-  optEl.innerHTML = "";
-  endEl.style.display = "none";
-
-  for (const key in q.options) {
+  chapters.forEach(chapter => {
     const btn = document.createElement("button");
-    btn.textContent = key + ": " + q.options[key];
-    btn.onclick = () => {
-      if (key === q.correct) correctCount++;
-      else incorrectCount++;
-      qIndex++;
-      showQuestion();
-    };
-    optEl.appendChild(btn);
+    btn.className = "btn";
+    btn.textContent = chapter.replace(".json", "");
+    btn.addEventListener("click", () => loadQuiz(subject, chapter));
+    chapterList.appendChild(btn);
+  });
+
+  showSection("chapters");
+}
+
+document.getElementById("back-to-subjects").addEventListener("click", () => showSection("subjects"));
+document.getElementById("back-to-subjects-2").addEventListener("click", () => showSection("subjects"));
+
+// ✅ Quiz loader
+async function loadQuiz(subject, chapterFile) {
+  const res = await fetch(`Data/questions/${subject}/${chapterFile}`);
+  const questions = await res.json();
+
+  let current = 0, correct = 0;
+
+  function renderQuestion() {
+    if (current >= questions.length) {
+      endQuiz();
+      return;
+    }
+    const q = questions[current];
+    document.getElementById("question").textContent = q.question;
+    const optionsDiv = document.getElementById("options");
+    optionsDiv.innerHTML = "";
+    q.options.forEach(opt => {
+      const btn = document.createElement("button");
+      btn.className = "btn";
+      btn.textContent = opt;
+      btn.onclick = () => {
+        if (opt === q.answer) correct++;
+        current++;
+        renderQuestion();
+      };
+      optionsDiv.appendChild(btn);
+    });
+  }
+
+  function endQuiz() {
+    document.getElementById("end-screen").textContent =
+      `Quiz complete! Correct: ${correct} / ${questions.length}`;
+
+    saveResult(subject, chapterFile, correct, questions.length - correct);
+    fetchLastFive(auth.currentUser.uid);
+  }
+
+  renderQuestion();
+  showSection("quiz");
+}
+
+// ✅ Save results to Firestore
+async function saveResult(subject, chapter, correct, incorrect) {
+  if (!auth.currentUser) return;
+  try {
+    await addDoc(collection(db, "results"), {
+      uid: auth.currentUser.uid,
+      subject,
+      chapter,
+      correct,
+      incorrect,
+      time: new Date()
+    });
+  } catch (e) {
+    console.error("Error saving result:", e);
   }
 }
 
-async function finishQuiz() {
-  const qEl = document.getElementById("question");
-  const optEl = document.getElementById("options");
-  const endEl = document.getElementById("end-screen");
+// ✅ Fetch last 5 results
+async function fetchLastFive(uid) {
+  const q = query(
+    collection(db, "results"),
+    orderBy("time", "desc"),
+    limit(5)
+  );
 
-  const timeTaken = Math.floor((Date.now() - startTime) / 1000);
-  qEl.textContent = "Quiz Finished!";
-  optEl.innerHTML = "";
-  endEl.innerHTML = `
-    <p>Correct: ${correctCount}</p>
-    <p>Incorrect: ${incorrectCount}</p>
-    <p>Time: ${timeTaken}s</p>
-  `;
-  endEl.style.display = "block";
-
-  if (currentUser) {
-    await saveResult(
-      currentUser.uid,
-      currentSubject,
-      titleFromFilename(currentChapter),
-      correctCount,
-      incorrectCount,
-      timeTaken
-    );
-    loadLastFive();
-  }
-}
-
-/* ----- Last 5 Results ----- */
-async function loadLastFive() {
-  if (!currentUser) return;
-  const results = await fetchLastFive(currentUser.uid);
+  const snapshot = await getDocs(q);
   const tbody = document.getElementById("last5-body");
   tbody.innerHTML = "";
 
-  results.forEach(r => {
-    const row = document.createElement("tr");
-    row.innerHTML = `
+  snapshot.forEach(doc => {
+    const r = doc.data();
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
       <td>${r.subject}</td>
       <td>${r.chapter}</td>
       <td>${r.correct}</td>
       <td>${r.incorrect}</td>
-      <td>${r.timeTaken}s</td>
+      <td>${new Date(r.time.seconds * 1000).toLocaleString()}</td>
     `;
-    tbody.appendChild(row);
+    tbody.appendChild(tr);
   });
 }
-
-/* ================================
-   Auth Handling
-================================ */
-
-onAuthStateChanged(auth, user => {
-  if (user) {
-    currentUser = user;
-    document.getElementById("auth").style.display = "none";
-    loadSubjects();
-    loadLastFive();
-  } else {
-    currentUser = null;
-    showSection("auth");
-  }
-});
-
-document.getElementById("signupBtn").onclick = async () => {
-  const email = document.getElementById("email").value;
-  const pass  = document.getElementById("password").value;
-  await createUserWithEmailAndPassword(auth, email, pass);
-};
-
-document.getElementById("loginBtn").onclick = async () => {
-  const email = document.getElementById("email").value;
-  const pass  = document.getElementById("password").value;
-  await signInWithEmailAndPassword(auth, email, pass);
-};
-
-document.getElementById("googleBtn").onclick = async () => {
-  await signInWithPopup(auth, googleProvider);
-};
-
-document.getElementById("logout-1").onclick = async () => { await signOut(auth); };
-document.getElementById("logout-2").onclick = async () => { await signOut(auth); };
-
-document.getElementById("back-to-subjects").onclick = () => loadSubjects();
-document.getElementById("back-to-subjects-2").onclick = () => loadSubjects();
