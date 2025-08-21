@@ -26,6 +26,14 @@ const auth = getAuth(app);
 const db   = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
 
+
+// Temporary placeholder for last 5 results
+async function fetchLastFive(userId) {
+  // TODO: Later connect this with Firestore to get real results
+  return [];
+}
+
+
 /* ---------- Persistence ---------- */
 try {
   await setPersistence(auth, browserLocalPersistence);
@@ -328,3 +336,4 @@ function humanAuthError(e){
 
 /* ---------- Nav ---------- */
 $("back-to-subjects").onclick = () => show("subjects");
+
