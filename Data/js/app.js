@@ -7,11 +7,11 @@ import {
   browserLocalPersistence
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 import {
-  getFirestore, doc, setDoc, getDoc,
+  getFirestore, doc, setDoc,
   collection, addDoc, serverTimestamp, query, orderBy, limit, getDocs
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-/* ---------- Config (new Firebase project) ---------- */
+/* ---------- Config (Firebase project) ---------- */
 const firebaseConfig = {
   apiKey: "AIzaSyDHMrrJXvUkQ5Dg_j7ekskEqmkP1f73YSs",
   authDomain: "cyberquiz12.firebaseapp.com",
@@ -25,81 +25,6 @@ const app  = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db   = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
-
-
-
-
-
-async function fetchLastFive(userId) {
-  try {
-    const q = query(
-      collection(db, "quiz_results"),
-      orderBy("date", "desc"),
-      limit(5)
-    );
-
-    const snapshot = await getDocs(q);
-
-    const tbody = document.getElementById("last5-body");
-    tbody.innerHTML = "";
-
-    snapshot.forEach(doc => {
-      const r = doc.data();
-      const tr = document.createElement("tr");
-
-      tr.innerHTML = `
-  <td>${d.date?.toDate ? d.date.toDate().toLocaleString() : ""}</td>
-  <td>${d.subject || "-"}</td>
-  <td>${d.userName || "-"}</td>
-  <td>${d.correctAnswers ?? 0}</td>
-  <td>${d.incorrectAnswers ?? 0}</td>
-  <td>${d.timeTaken ? d.timeTaken + " sec" : "-"}</td>
-`;
-
-
-      // 👇 Add click to show details
-      tr.style.cursor = "pointer";
-      tr.onclick = () => showResultDetails(r);
-
-      tbody.appendChild(tr);
-    });
-
-  } catch (e) {
-    console.error("Error fetching last 5 results:", e);
-  }
-}
-
-// ✅ Show modal with full details
-function showResultDetails(result) {
-  const overlay = document.getElementById("modal-overlay");
-  overlay.innerHTML = `
-    <div class="modal">
-      <h2>Quiz Details</h2>
-      <p><b>User:</b> ${result.name}</p>
-      <p><b>Date:</b> ${result.date ? new Date(result.date.seconds * 1000).toLocaleString() : ""}</p>
-      <p><b>Correct:</b> ${result.correctAnswers}</p>
-      <p><b>Incorrect:</b> ${result.incorrectAnswers}</p>
-      <h3>Responses:</h3>
-      <ul>
-        ${result.responses.map(r => `
-          <li>
-            <b>Q:</b> ${r.question}<br>
-            <b>Your Answer:</b> ${r.selected}<br>
-            <b>Correct Answer:</b> ${r.correct}
-          </li>
-        `).join("")}
-      </ul>
-      <button onclick="document.getElementById('modal-overlay').style.display='none'">Close</button>
-    </div>
-  `;
-  overlay.style.display = "block";
-}
-
-
-
-
-
-
 
 /* ---------- Persistence ---------- */
 try {
@@ -126,39 +51,33 @@ function show(id){
   }
 }
 function msg(text){ $("auth-msg").textContent = text || ""; }
-function dbg(...args){ console.log("[DBG]", ...args); }
+
+/* ---------- Timestamp helper ---------- */
+function tsToDate(ts){
+  if(!ts) return "";
+  if (typeof ts.toDate === "function") return ts.toDate().toLocaleString();
+  if (typeof ts.seconds === "number") return new Date(ts.seconds * 1000).toLocaleString();
+  try { return new Date(ts).toLocaleString(); } catch { return ""; }
+}
 
 /* ---------- Paths ---------- */
 const RAW_BASE = "https://singla1209.github.io/CyberQuiz/Data/questions/";
 
 /* ---------- Subjects ---------- */
+
+
 const SUBJECTS = [
-  { key:"cs10", label:"Computer Science - 10th", path:"Computer Science - 10th/" },
-  { key:"cs11", label:"Computer Science - 11th", path:"Computer Science - 11th/" }
+  { key:"class6",  label:"Class 6 – Computer Science", path:"Class 6/" },
+  { key:"class7",  label:"Class 7 – Computer Science", path:"Class 7/" },
+  { key:"class8",  label:"Class 8 – Computer Science", path:"Class 8/" },
+  { key:"class9",  label:"Class 9 – Computer Science", path:"Class 9/" },
+  { key:"class10", label:"Class 10 – Computer Science", path:"Computer Science - 10th/" },
+  { key:"class11", label:"Class 11 – Computer Science", path:"Computer Science - 11th/" },
+  { key:"class12", label:"Class 12 – Computer Science", path:"Computer Science - 12th/" }
 ];
 
+
 /* ---------- Utility ---------- */
-function titleFromFilename(filename){
-  const base = filename.replace(/\.json$/i,'').replace(/[_\-]+/g,' ').trim();
-  return base.replace(/\s+/g,' ')
-    .split(' ')
-    .map(w=>w ? w[0].toUpperCase()+w.slice(1) : '')
-    .join(' ');
-}
-
-async function listChapters(path){
-  try {
-    const url = RAW_BASE + path + "manifest.json";
-    const res = await fetch(url, { cache:"no-store" });
-    if(!res.ok) throw new Error("Manifest not found for " + path);
-    const files = await res.json(); // array of filenames
-    return files.map(name => ({ name, path: path + name }));
-  } catch (e){
-    console.error("listChapters error", e);
-    return [];
-  }
-}
-
 function shuffle(arr){
   for(let i=arr.length-1;i>0;i--){
     const j = Math.floor(Math.random()*(i+1));
@@ -194,8 +113,7 @@ $("login-btn").onclick = async () => {
   if(!id || !pass){ msg("Enter email/mobile and password."); return; }
   if(!id.includes("@")) id += "@mobile.com";
   try {
-    const cred = await signInWithEmailAndPassword(auth, id, pass);
-    dbg("Login success:", cred.user.uid);
+    await signInWithEmailAndPassword(auth, id, pass);
     msg("");
   } catch(e){ msg(humanAuthError(e)); }
 };
@@ -251,22 +169,35 @@ async function startSubject(s){
   subject = s;
 
   $("chapters-title").textContent = `Choose a chapter – ${s.label}`;
-  $("chapters-subtitle").textContent = `CyberQuiz Session`;
+  $("chapters-subtitle").textContent = `CyberQuiz Session - Select Chapter`;
   const container = $("chapter-list");
   container.innerHTML = `<div class="muted" style="grid-column:1/-1">Loading chapters…</div>`;
 
   try{
-    const items = await listChapters(s.path);
-    if(!items.length){
+    const url = RAW_BASE + s.path + "manifest.json";
+    const res = await fetch(url, { cache:"no-store" });
+    let files = [];
+    if(res.ok){
+      files = await res.json();
+    } else {
+      // fallback check (1..100.json)
+      for(let i=1;i<=100;i++){
+        const tryUrl = RAW_BASE + s.path + i + ".json";
+        const head = await fetch(tryUrl, { method:"HEAD" });
+        if(head.ok) files.push(i + ".json");
+      }
+    }
+
+    if(!files.length){
       container.innerHTML = `<div class="muted">No chapter files found.</div>`;
     } else {
       container.innerHTML = "";
-      items.forEach(file=>{
-        const pretty = titleFromFilename(file.name);
+      files.forEach(name=>{
+        const pretty = name.replace(/\.json$/,"");
         const btn = document.createElement("button");
         btn.className = "btn chapter";
         btn.textContent = pretty;
-        btn.onclick = () => startChapterQuiz(s, file.path, pretty);
+        btn.onclick = () => startChapterQuiz(s, name, pretty);
         container.appendChild(btn);
       });
     }
@@ -276,8 +207,8 @@ async function startSubject(s){
   show("chapters");
 }
 
-async function startChapterQuiz(s, relPath, prettyTitle){
-  const url = RAW_BASE + relPath;
+async function startChapterQuiz(s, fileName, prettyTitle){
+  const url = RAW_BASE + s.path + fileName;
   currentChapterTitle = prettyTitle;
   await beginQuizFromUrl(url, s.label, prettyTitle);
 }
@@ -363,30 +294,111 @@ function choose(selectedKey, el){
   }, 800);
 }
 
+
 async function finishQuiz(){
   $("question").textContent = "All done!";
   $("options").innerHTML = "";
   $("end-screen").style.display = "block";
   $("end-screen").innerHTML = `<h3>Score: ${correct} / ${questions.length}</h3>`;
 
-  const timeTakenSec = quizStartMs ? (Date.now() - quizStartMs)/1000 : 0;
+  const timeTakenSec = quizStartMs ? Math.round((Date.now() - quizStartMs)/1000) : 0;
 
   try{
     const current = auth.currentUser;
-    await addDoc(collection(db, "quiz_results"), {
-  uid: auth.currentUser.uid,
-  userName: auth.currentUser.email,  // ✅ will show under "Name"
-  subject,                           // ✅ subject name
-  chapter,                           // ✅ chapter number
-  correctAnswers,
-  incorrectAnswers,
-  responses,
-  timeTaken,
-  date: new Date()
-});
+    if (current) {
+      await addDoc(collection(db, "quiz_results"), {
+        uid: current.uid,
+        userName: current.displayName || current.email || "User",
+        subject,
+        chapter: currentChapterTitle,
+        correctAnswers: correct,
+        incorrectAnswers: incorrect,
+        responses,
+        timeTaken: timeTakenSec,
+        date: new Date()
+      });
+    }
+  } catch(e){ 
+    console.error("Save failed:", e); 
+  }
+
+  /* ---------- Show celebration overlay ---------- */
+  $("big-name").textContent = userName || "Great Job!";
+  $("motivation").textContent = `You scored ${correct} out of ${questions.length}!`;
+  $("celebrate-overlay").style.display = "flex";
+}
 
 
-  } catch(e){ console.error("Save failed:", e); }
+
+
+
+
+/* ---------- Last 5 Results ---------- */
+async function fetchLastFive(userId){
+  try {
+    const uid = userId || (auth.currentUser && auth.currentUser.uid);
+    if (!uid) return;
+
+    const qref = query(
+      collection(db, "quiz_results"),
+      orderBy("date", "desc"),
+      limit(5)
+    );
+    const snapshot = await getDocs(qref);
+
+    const tbody = document.getElementById("last5-body");
+    if (!tbody) return;
+    tbody.innerHTML = "";
+
+    snapshot.forEach(docSnap => {
+      const d = docSnap.data();
+      if (d.uid !== uid) return;
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${tsToDate(d.date)}</td>
+        <td>${d.subject || "-"}</td>
+        <td>${d.userName || "-"}</td>
+        <td>${d.correctAnswers ?? 0}</td>
+        <td>${d.incorrectAnswers ?? 0}</td>
+        <td>${d.timeTaken ? d.timeTaken + " sec" : "-"}</td>
+      `;
+      tr.style.cursor = "pointer";
+      tr.onclick = () => showResultDetails(d);
+      tbody.appendChild(tr);
+    });
+  } catch (e) {
+    console.error("Error fetching last 5 results:", e);
+  }
+}
+
+function showResultDetails(result){
+  const overlay = document.getElementById("modal-overlay");
+  if (!overlay) return;
+  overlay.innerHTML = `
+    <div class="modal">
+      <h2>Quiz Details</h2>
+      <p><b>User:</b> ${result.userName || result.name || "-"}</p>
+      <p><b>Date:</b> ${tsToDate(result.date)}</p>
+      <p><b>Subject:</b> ${result.subject || "-"}</p>
+      <p><b>Chapter:</b> ${result.chapter || "-"}</p>
+      <p><b>Correct:</b> ${result.correctAnswers ?? 0}</p>
+      <p><b>Incorrect:</b> ${result.incorrectAnswers ?? 0}</p>
+      <p><b>Time Taken:</b> ${result.timeTaken ? result.timeTaken + " sec" : "-"}</p>
+      <h3>Responses:</h3>
+      <ul>
+        ${(Array.isArray(result.responses) ? result.responses : []).map(r => `
+          <li style="margin-bottom:8px;">
+            <b>Q:</b> ${r.question}<br>
+            <b>Your Answer:</b> ${r.selected}<br>
+            <b>Correct Answer:</b> ${r.correct}
+          </li>
+        `).join("")}
+      </ul>
+      <button onclick="document.getElementById('modal-overlay').style.display='none'">Close</button>
+    </div>
+  `;
+  overlay.style.display = "block";
 }
 
 /* ---------- Errors ---------- */
@@ -402,4 +414,23 @@ function humanAuthError(e){
 }
 
 /* ---------- Nav ---------- */
-$("back-to-subjects").onclick = () => show("subjects");
+// From quiz screen → go back to chapters of the same class
+$("back-to-subjects").onclick = () => show("chapters");
+
+// From chapters screen → go back to class list
+$("back-to-subjects-2").onclick = () => show("subjects");
+
+/* ---------- Play Again ---------- */
+$("play-again-btn").onclick = () => {
+  if(subject && currentChapterTitle){
+    const fileName = currentChapterTitle + ".json";
+    startChapterQuiz(subject, fileName, currentChapterTitle);
+  }
+  $("celebrate-overlay").style.display = "none";
+};
+
+/* ---------- Close Celebration Overlay ---------- */
+$("celebrate-close").onclick = () => {
+  $("celebrate-overlay").style.display = "none";
+};
+
