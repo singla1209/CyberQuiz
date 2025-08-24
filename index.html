@@ -4,10 +4,30 @@
 <head>
   <meta charset="utf-8"/> <!-- Sets character encoding to UTF-8 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <!-- Makes page responsive -->
-  <title>BrainQuest</title> <!-- Title shown in browser tab -->
+  <title>CyberQuiz</title> <!-- Title shown in browser tab -->
 
-  <!-- Linking external CSS -->
-  <link href="Data/css/style.css" rel="stylesheet"/>
+  <!-- Linking theme CSS (default theme first) -->
+  <link id="theme-link" rel="stylesheet" href="Data/css/style-default.css">
+<style>
+/* ====== Answer Options Layout ====== */
+.option_list {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 per row */
+  gap: 12px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.option {
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+}
+</style>
 </head>
 <body>
   <div class="container">
@@ -18,9 +38,12 @@
         <div class="shell">
           <div class="card-auth">
 
-<div id="brand">
-  <img src="Data/images/brand-logo.png" alt="BrainQuest" style="width:220px; height:auto;"/>
-</div> <!-- App name -->
+            <div id="brand">
+              <img src="Data/images/brand-logo.png" 
+     alt="CyberQuiz" 
+     style="width:220px; height:auto; display:block; margin:0 auto;" />
+
+            </div> <!-- App name -->
             <div class="subtitle">Sign in to start your quizzes</div>
 
             <!-- Login inputs -->
@@ -32,7 +55,6 @@
 
             <!-- Google Sign-In button -->
             <button class="google-btn" id="google-btn" aria-label="Sign in with Google">
-              <!-- Google SVG icon -->
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">...</svg>
               Sign in with Google
             </button>
@@ -64,12 +86,12 @@
         </div>
       </section>
 
-      <!-- ======= CHAPTERS SECTION (depends on subject) ======= -->
+      <!-- ======= CHAPTERS SECTION ======= -->
       <section id="chapters">
         <div>
           <h2 id="chapters-title">Choose a chapter</h2>
           <p class="muted" id="chapters-subtitle">NCERT Class 10 • Session 2025–26</p>
-          <div id="chapter-list"></div> <!-- Chapters added dynamically -->
+          <div id="chapter-list"></div>
           <div class="top-actions">
             <button class="btn secondary" id="back-to-subjects-2">Back to Main Menu</button>
           </div>
@@ -79,22 +101,18 @@
       <!-- ======= QUIZ SECTION ======= -->
       <section id="quiz">
         <div id="quiz-wrapper">
-          <h2 id="welcome-banner"></h2> <!-- Welcome message with subject -->
+          <h2 id="welcome-banner"></h2>
           <div class="stats" id="stats">✅ Correct: 0   |   ❌ Incorrect: 0</div>
           <div class="muted" id="qprogress" style="text-align:center">Question 1/1</div>
-          <!-- Progress bar -->
           <div class="bar"><div id="bar-inner"></div></div>
 
-          <!-- Quiz question and options -->
           <div class="quiz-card">
             <div id="question">Loading…</div>
             <div id="options"></div>
           </div>
 
-          <!-- End screen after quiz is finished -->
           <div id="end-screen" style="display:none;margin-top:14px;text-align:center"></div>
 
-          <!-- Last 5 results panel -->
           <div id="results-panel">
             <h3>Last 5 Results</h3>
             <div class="results-box">
@@ -116,13 +134,11 @@
             </div>
           </div>
 
-          <!-- Buttons at bottom of quiz -->
           <div class="top-actions" style="margin-top:14px">
-            <button class="btn secondary" id="back-to-subjects">Choose another subject</button>
+            <button class="btn secondary" id="back-to-subjects">Choose another Chapter</button>
             <button class="btn secondary" id="logout-2">Logout</button>
           </div>
 
-          <!-- Correct & Wrong sounds -->
           <audio id="correct-sound" preload="auto" src="correct.mp3"></audio>
           <audio id="wrong-sound" preload="auto" src="wrong.mp3"></audio>
         </div>
@@ -135,9 +151,9 @@
   <canvas id="confetti"></canvas>
   <div id="celebrate-overlay" aria-hidden="true">
     <div id="celebrate-card">
-      <div id="big-name"></div> <!-- Shows user name -->
-      <div id="motivation"></div> <!-- Motivational text -->
-      <canvas id="donut" width="180" height="180"></canvas> <!-- Chart for score -->
+      <div id="big-name"></div>
+      <div id="motivation"></div>
+      <canvas id="donut" width="180" height="180"></canvas>
       <div style="display:flex;gap:10px;justify-content:center;margin-top:8px">
         <button class="btn" id="play-again-btn">Play Again</button>
         <button class="btn secondary" id="celebrate-close">Close</button>
@@ -145,7 +161,7 @@
     </div>
   </div>
 
-  <!-- ======= MODAL POPUP (detailed results) ======= -->
+  <!-- ======= MODAL POPUP ======= -->
   <div class="modal-overlay" id="modal-overlay">
     <div class="modal">
       <button class="close" id="modal-close" aria-label="Close">✕</button>
@@ -154,9 +170,35 @@
   </div>
 
   <!-- ================== SCRIPTS ================== -->
-  <script src="js/include.js"></script> <!-- Helper script -->
-  <script type="module" src="Data/js/app.js"></script> <!-- Main app script -->
-<div class="developer-name">© 2025 GSSSS Chappar</div>
+  <script src="js/include.js"></script>
+  <script type="module" src="Data/js/app.js"></script>
+  <div class="developer-name">© 2025 GSSSS Chappar</div>
+
+  <!-- === Theme Toggle Button === -->
+  <button id="theme-toggle" aria-label="Switch Theme">🎨</button>
+
+  <script>
+    const themes = [
+      "Data/css/style-default.css",
+      "Data/css/style-blue-purple.css",
+      "Data/css/style-green-cyan.css",
+      "Data/css/style-pink-teal.css"
+    ];
+
+    const themeLink = document.getElementById("theme-link");
+    const toggleBtn = document.getElementById("theme-toggle");
+
+    // Load saved theme or default
+    let current = localStorage.getItem("theme") || themes[0];
+    themeLink.href = current;
+
+    toggleBtn.addEventListener("click", () => {
+      let idx = themes.indexOf(themeLink.getAttribute("href"));
+      let next = themes[(idx + 1) % themes.length];
+      themeLink.href = next;
+      localStorage.setItem("theme", next);
+    });
+  </script>
 
 </body>
 </html>
