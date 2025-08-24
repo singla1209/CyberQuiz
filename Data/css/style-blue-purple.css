@@ -38,7 +38,7 @@ a{color:var(--accent);text-decoration:none}
 #subject-list, #chapter-list {display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px}
 @media (min-width:520px){#subject-list,#chapter-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (min-width:900px){#subject-list,#chapter-list{grid-template-columns:repeat(3,minmax(0,1fr))}}
-.subject,.chapter{background:var(--card);color:#fff;padding:12px;border-radius:12px;cursor:pointer;text-align:center}
+.subject,.chapter{background:var(--card);color:#fff;padding:20px;border-radius:12px;cursor:pointer;text-align:center}
 .subject:hover,.chapter:hover{background:var(--card-2)}
 
 /* ===== Quiz UI ===== */
