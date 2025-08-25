@@ -1,0 +1,52 @@
+[
+  {
+    "question": "ਜਦੋਂ ਕੰਪਿਊਟਰ ਇੰਟਰਨੈੱਟ ਤੋਂ ਡਾਟਾ ਪ੍ਰਾਪਤ ਕਰਦਾ ਹੈ, ਇਸ ਨੂੰ ______ ਕਿਹਾ ਜਾਂਦਾ ਹੈ।",
+    "options": { "A": "Uploading", "B": "Downloading", "C": "Searching", "D": "Browsing" },
+    "correct": "B"
+  },
+  {
+    "question": "ਕਿਸੇ ਵੇਬਸਾਈਟ ਦਾ ਸਭ ਤੋਂ ਪਹਿਲਾ ਪੇਜ ______ ਕਿਹਾ ਜਾਂਦਾ ਹੈ।",
+    "options": { "A": "Home Page", "B": "Web Page", "C": "Main Page", "D": "Index Page" },
+    "correct": "A"
+  },
+  {
+    "question": "______ ਦਾ ਮਤਲਬ ਹੈ ਇੰਟਰਨੈੱਟ ਨਾਲ ਜੁੜੇ ਹੋਏ।",
+    "options": { "A": "Offline", "B": "Online", "C": "Inline", "D": "Outline" },
+    "correct": "B"
+  },
+  {
+    "question": "ਇੰਟਰਨੈੱਟ ਉੱਤੇ ਲੋੜੀਂਦੀ ਜਾਣਕਾਰੀ ਲੱਭਣ ਲਈ ਇੱਕ ਪੇਜ/ਸਾਈਟ ਤੋਂ ਦੂਜੇ ਤੇ ਜਾਣਾ ______ ਕਹਾਉਂਦਾ ਹੈ।",
+    "options": { "A": "Web Searching", "B": "Downloading", "C": "Web Surfing", "D": "Uploading" },
+    "correct": "C"
+  },
+  {
+    "question": "ਇੰਟਰਨੈੱਟ ਦੁਆਰਾ ਚੀਜ਼ਾਂ/ਸੇਵਾਵਾਂ ਖਰੀਦਣ ਦੀ ਪ੍ਰਕਿਰਿਆ ______ ਕਹਾਉਂਦੀ ਹੈ।",
+    "options": { "A": "Net Banking", "B": "E-Mail", "C": "Online Shopping", "D": "Chatting" },
+    "correct": "C"
+  },
+  {
+    "question": "Offline ਦਾ ਅਰਥ ਇੰਟਰਨੈੱਟ ਨਾਲ ਜੁੜੇ ਹੋਣਾ ਹੈ।",
+    "options": { "A": "ਸਹੀ", "B": "ਗਲਤ" },
+    "correct": "B"
+  },
+  {
+    "question": "ਵੇਬਸਾਈਟ ਦੇ ਪਹਿਲੇ ਪੇਜ ਨੂੰ Web Page ਕਿਹਾ ਜਾਂਦਾ ਹੈ।",
+    "options": { "A": "ਸਹੀ", "B": "ਗਲਤ" },
+    "correct": "B"
+  },
+  {
+    "question": "ਵੇਬਸਾਈਟ ਦਾ ਆਪਣਾ ਇਕ ਵਿਸ਼ੇਸ਼ ਪਤਾ ਹੁੰਦਾ ਹੈ ਜਿਸ ਨੂੰ URL ਕਿਹਾ ਜਾਂਦਾ ਹੈ।",
+    "options": { "A": "ਸਹੀ", "B": "ਗਲਤ" },
+    "correct": "A"
+  },
+  {
+    "question": "ਕਈ ਵੇਬ ਪੇਜਾਂ ਦੇ ਸਮੂਹ ਨੂੰ ______ ਕਿਹਾ ਜਾਂਦਾ ਹੈ।",
+    "options": { "A": "Browser", "B": "Website", "C": "Homepage", "D": "Link" },
+    "correct": "B"
+  },
+  {
+    "question": "ਬੈਂਕ ਦੀਆਂ ਸੇਵਾਵਾਂ ਨੂੰ ਇੰਟਰਨੈੱਟ ਰਾਹੀਂ ਵਰਤਣਾ ______ ਕਹਾਉਂਦਾ ਹੈ।",
+    "options": { "A": "E-Commerce", "B": "Net Banking", "C": "E-Mail", "D": "Chatting" },
+    "correct": "B"
+  }
+]

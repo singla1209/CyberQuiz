@@ -1,0 +1,52 @@
+[
+  {
+    "question": "ਸਲਾਈਡ ਉੱਤੇ ਤੱਤਾਂ ਦੇ ਵਿਨਯਾਸ (arrangement) ਨੂੰ _____ ਪ੍ਰਭਾਵਿਤ ਕਰਦਾ ਹੈ।",
+    "options": { "A": "Background Style", "B": "Pattern", "C": "Slide Layout", "D": "Gradient" },
+    "correct": "C"
+  },
+  {
+    "question": "ਦੋ ਰੰਗਾਂ ਦੇ ਸਮਿਸ਼ਰਨ ਨਾਲ ਜੋ ਇਕ-ਦੂਜੇ ਵਿੱਚ ਮਿਲਦੇ ਹਨ, ਉਸਨੂੰ ______ ਕਿਹਾ ਜਾਂਦਾ ਹੈ।",
+    "options": { "A": "Theme", "B": "Pattern", "C": "Background", "D": "Gradient" },
+    "correct": "D"
+  },
+  {
+    "question": "ਜਿਸ ਵਿਊ ਵਿੱਚ ਅਸੀਂ ਸਲਾਈਡਾਂ ਬਣਾਉਂਦੇ/ਐਡਿਟ ਕਰਦੇ ਹਾਂ, ਉਹ ਡਿਫਾਲਟ ਵਿਊ ______ ਹੈ।",
+    "options": { "A": "Slide Show", "B": "Normal View", "C": "Reading View", "D": "Slide Sorter" },
+    "correct": "B"
+  },
+  {
+    "question": "PowerPoint 2010 ਵਿੱਚ ਡਿਫਾਲਟ ਸਲਾਈਡ ਬੈਕਗ੍ਰਾਊਂਡ ਸਟਾਈਲਾਂ ਦੀ ਗਿਣਤੀ ______ ਹੈ।",
+    "options": { "A": "48", "B": "4", "C": "12", "D": "3" },
+    "correct": "C"
+  },
+  {
+    "question": "ਕੰਟੈਂਟ ਨੂੰ ਨੇੜੇ ਤੋਂ ਵੇਖਣ ਲਈ ਵਰਤਿਆ ਜਾਣ ਵਾਲਾ ਫੀਚਰ ______ ਹੈ।",
+    "options": { "A": "Slide", "B": "Zoom", "C": "Gradient", "D": "Layout" },
+    "correct": "B"
+  },
+  {
+    "question": "ਨਵੀਂ ਸਲਾਈਡ ਜੋੜਨ ਦੀ ਸ਼ਾਰਟਕੱਟ ਕੀ ਹੈ?",
+    "options": { "A": "Ctrl+M", "B": "Ctrl+N", "C": "Ctrl+Shift+M", "D": "Alt+M" },
+    "correct": "A"
+  },
+  {
+    "question": "ਨਵੀਂ ਪ੍ਰੇਜ਼ੈਂਟੇਸ਼ਨ ਬਣਾਉਣ ਦੀ ਸ਼ਾਰਟਕੱਟ ਕੀ ਹੈ?",
+    "options": { "A": "Ctrl+O", "B": "Ctrl+N", "C": "Ctrl+Shift+N", "D": "Alt+N" },
+    "correct": "B"
+  },
+  {
+    "question": "ਦਰਸ਼ਕਾਂ ਅੱਗੇ ਪ੍ਰੇਜ਼ੈਂਟੇਸ਼ਨ ਪੇਸ਼ ਕਰਨ ਲਈ ਕਿਹੜੀ ਵਿਊ ਵਰਤੀ ਜਾਂਦੀ ਹੈ?",
+    "options": { "A": "Normal", "B": "Slide Sorter", "C": "Slide Show", "D": "Reading" },
+    "correct": "C"
+  },
+  {
+    "question": "ਜ਼ੂਮ ਕੰਟਰੋਲ ਆਮ ਤੌਰ ਤੇ ਕਿੱਥੇ ਹੁੰਦਾ ਹੈ?",
+    "options": { "A": "Title Bar", "B": "Status Bar", "C": "Ribbon", "D": "Quick Access Toolbar" },
+    "correct": "B"
+  },
+  {
+    "question": "ਥੀਮ ਚੁਣਨ ਦਾ ਮੁੱਖ ਉਦੇਸ਼ ਕੀ ਹੈ?",
+    "options": { "A": "ਸਲਾਈਡਾਂ ਨੂੰ ਐਨੀਮੇਟ ਕਰਨਾ", "B": "ਸਲਾਈਡ ਲੇਆਉਟ ਬਦਲਣਾ", "C": "ਇਕਸਾਰ ਰੰਗ/ਫੋਂਟ/ਇਫੈਕਟ ਲਾਗੂ ਕਰਨਾ", "D": "ਜ਼ੂਮ ਲਗਾਉਣਾ" },
+    "correct": "C"
+  }
+]
