@@ -357,7 +357,7 @@ async function fetchLastFive(userId){
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td>${tsToDate(d.date)}</td>
-        <td>${d.subject || "-"}</td>
+        <td>${d.chapter || "-"}</td>
         <td>${d.userName || "-"}</td>
         <td>${d.correctAnswers ?? 0}</td>
         <td>${d.incorrectAnswers ?? 0}</td>
@@ -433,4 +433,5 @@ $("play-again-btn").onclick = () => {
 $("celebrate-close").onclick = () => {
   $("celebrate-overlay").style.display = "none";
 };
+
 
