@@ -436,6 +436,8 @@ $("celebrate-close").onclick = () => {
   $("celebrate-overlay").style.display = "none";
 };
 
+
+
 /* ---------- Back Button Handling ---------- */
 function pushHistoryState(qIndex){
   history.pushState({ q: qIndex }, "", `#q${qIndex}`);
@@ -446,19 +448,21 @@ window.onpopstate = function(event){
     idx = event.state.q;
     renderQuestion();
   } else {
-    const exit = confirm("Do you really want to exit the quiz?");
-    if(exit){
-      window.close(); // works if installed as app
+    if(confirm("Do you really want to exit the quiz?")){
+      window.close();
     } else {
-      history.pushState({ q: idx }, "", `#q${idx}`);
+      pushHistoryState(idx); // restore state so back button keeps working
     }
   }
 };
+
+
 
 // Run this only when quiz actually starts
 function initQuizHistory(){
   history.replaceState({ q: idx }, "", `#q${idx}`);
 }
+
 
 
 
