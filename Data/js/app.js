@@ -289,7 +289,9 @@ function choose(selectedKey, el){
   $("bar-inner").style.width = `${((idx+1)/questions.length)*100}%`;
 
   setTimeout(()=>{
-    if(idx < questions.length-1){ idx++; renderQuestion(); }
+    if(idx < questions.length-1){ idx++; renderQuestion(); 
+              pushHistoryState(idx);                   
+                                }
     else { finishQuiz(); }
   }, 800);
 }
@@ -433,6 +435,29 @@ $("play-again-btn").onclick = () => {
 $("celebrate-close").onclick = () => {
   $("celebrate-overlay").style.display = "none";
 };
+
+/* ---------- Back Button Handling ---------- */
+function pushHistoryState(qIndex){
+  history.pushState({ q: qIndex }, "", `#q${qIndex}`);
+}
+
+window.onpopstate = function(event){
+  if(event.state && event.state.q !== undefined){
+    idx = event.state.q;
+    renderQuestion();
+  } else {
+    const exit = confirm("Do you really want to exit the quiz?");
+    if(exit){
+      window.close(); // works if installed as app
+    } else {
+      history.pushState({ q: idx }, "", `#q${idx}`);
+    }
+  }
+};
+
+// Set initial state on quiz start
+history.replaceState({ q: 0 }, "", "#q0");
+
 
 
 
