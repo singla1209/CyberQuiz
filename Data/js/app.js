@@ -455,8 +455,10 @@ window.onpopstate = function(event){
   }
 };
 
-// Set initial state on quiz start
-history.replaceState({ q: 0 }, "", "#q0");
+// Run this only when quiz actually starts
+function initQuizHistory(){
+  history.replaceState({ q: idx }, "", `#q${idx}`);
+}
 
 
 
