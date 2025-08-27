@@ -64,8 +64,6 @@ function tsToDate(ts){
 const RAW_BASE = "https://singla1209.github.io/CyberQuiz/Data/questions/";
 
 /* ---------- Subjects ---------- */
-
-
 const SUBJECTS = [
   { key:"class6",  label:"Class 6 – Computer Science", path:"Class 6/" },
   { key:"class7",  label:"Class 7 – Computer Science", path:"Class 7/" },
@@ -75,7 +73,6 @@ const SUBJECTS = [
   { key:"class11", label:"Class 11 – Computer Science", path:"Computer Science - 11th/" },
   { key:"class12", label:"Class 12 – Computer Science", path:"Computer Science - 12th/" }
 ];
-
 
 /* ---------- Utility ---------- */
 function shuffle(arr){
@@ -94,6 +91,9 @@ let currentChapterTitle = "";
 let questions = [];
 let idx = 0, correct = 0, incorrect = 0, responses = [];
 let quizStartMs = null;
+
+/* ---------- Timer state (used across functions) ---------- */
+let timerId = null; // used in choose(), renderQuestion(), finishQuiz()
 
 /* Build subject buttons */
 const list = $("subject-list");
@@ -263,40 +263,134 @@ function renderQuestion(){
   $("qprogress").textContent = `Question ${idx+1}/${questions.length}`;
   $("bar-inner").style.width = `${((idx)/questions.length)*100}%`;
   if(quizStartMs === null) quizStartMs = Date.now();
+
+  // 🔹 Start timer for this question (30 sec)
+  startTimer(30);
 }
 
-function choose(selectedKey, el){
+function choose(selectedKey, el) {
   document.querySelectorAll(".option").forEach(o => o.style.pointerEvents = "none");
   const q = questions[idx];
   const correctKey = q._correctKey;
 
-  document.querySelectorAll(".option").forEach(o=>{
+  // highlight correct answer
+  document.querySelectorAll(".option").forEach(o => {
     const isCorrect = q._optionsArr.find(x => x.text === o.textContent)?.key === correctKey;
-    if(isCorrect) o.classList.add("correct");
+    if (isCorrect) o.classList.add("correct");
   });
-  if(selectedKey !== correctKey) el.classList.add("wrong");
 
-  const selectedObj = q._optionsArr.find(x=>x.key===selectedKey);
-  const correctObj  = q._optionsArr.find(x=>x.key===correctKey);
+  if (selectedKey !== correctKey) el.classList.add("wrong");
+
+  const selectedObj = q._optionsArr.find(x => x.key === selectedKey);
+  const correctObj  = q._optionsArr.find(x => x.key === correctKey);
   const selectedAnswer = selectedObj ? selectedObj.text : "No answer";
   const correctAnswer  = correctObj  ? correctObj.text  : "";
 
   responses.push({ question: q.question, selected: selectedAnswer, correct: correctAnswer });
 
-  if(selectedKey === correctKey){ correct++; } else { incorrect++; }
+  if (selectedKey === correctKey) {
+    correct++;
+    document.getElementById("correct-sound").play();   // ✅ play correct sound
+  } else {
+    incorrect++;
+    document.getElementById("wrong-sound").play();     // ✅ play wrong sound
+  }
 
   $("stats").textContent = `✅ Correct: ${correct}  |  ❌ Incorrect: ${incorrect}`;
   $("bar-inner").style.width = `${((idx+1)/questions.length)*100}%`;
 
-  setTimeout(()=>{
-    if(idx < questions.length-1){ idx++; renderQuestion();              
-                                }
-    else { finishQuiz(); }
+  setTimeout(() => {
+    if (idx < questions.length - 1) {
+      idx++;
+      renderQuestion();
+    } else {
+      finishQuiz();
+    }
+  }, 800);
+}
+
+
+/* ---------- Timer (Circular, wrong on timeout) ---------- */
+const radius = 100;
+const circumference = 2 * Math.PI * radius;
+
+function startTimer(totalTime) {
+  clearInterval(timerId);
+  let timeLeft = totalTime;
+
+  const display = document.getElementById("time-left");
+  const progressCircle = document.querySelector(".progress");
+
+  if (!display || !progressCircle) return; // if timer UI not present
+
+  display.textContent = timeLeft;
+  progressCircle.style.strokeDasharray = circumference;
+  progressCircle.style.strokeDashoffset = 0;
+  progressCircle.style.stroke = "#22c55e";
+
+  timerId = setInterval(() => {
+    timeLeft--;
+      // 🔔 play tick sound every second
+  document.getElementById("tick-sound").play();
+    display.textContent = timeLeft;
+
+    const offset = circumference - (timeLeft / totalTime) * circumference;
+    progressCircle.style.strokeDashoffset = offset;
+
+    if (timeLeft > totalTime * 2/3) {
+      progressCircle.style.stroke = "#22c55e"; 
+    } else if (timeLeft > totalTime / 3) {
+      progressCircle.style.stroke = "#eab308"; 
+    } else {
+      progressCircle.style.stroke = "#ef4444"; 
+    }
+
+    if (timeLeft <= 0) {
+      clearInterval(timerId);
+      handleTimeUp();
+    }
+  }, 1000);
+}
+
+function handleTimeUp() {
+  const q = questions[idx];
+  const correctKey = q._correctKey;
+
+  incorrect++;
+  document.getElementById("wrong-sound").play();   // 🔊 play wrong sound
+
+  // ✅ highlight the correct answer
+  document.querySelectorAll(".option").forEach(o => {
+    const isCorrect = q._optionsArr.find(x => x.text === o.textContent)?.key === correctKey;
+    if (isCorrect) o.classList.add("correct");
+  });
+
+  const correctObj  = q._optionsArr.find(x => x.key === correctKey);
+  const correctAnswer = correctObj ? correctObj.text : "";
+
+  responses.push({ 
+    question: q.question, 
+    selected: "No Answer (timeout)", 
+    correct: correctAnswer 
+  });
+
+  $("stats").textContent = `✅ Correct: ${correct}  |  ❌ Incorrect: ${incorrect}`;
+  $("bar-inner").style.width = `${((idx+1)/questions.length)*100}%`;
+
+  // 🕒 pause like wrong answer click
+  setTimeout(() => {
+    if (idx < questions.length - 1) {
+      idx++;
+      renderQuestion();
+    } else {
+      finishQuiz();
+    }
   }, 800);
 }
 
 
 async function finishQuiz(){
+  clearInterval(timerId); // stop timer
   $("question").textContent = "All done!";
   $("options").innerHTML = "";
   $("end-screen").style.display = "block";
@@ -329,11 +423,6 @@ async function finishQuiz(){
   $("celebrate-overlay").style.display = "flex";
 }
 
-
-
-
-
-
 /* ---------- Last 5 Results ---------- */
 async function fetchLastFive(userId){
   try {
@@ -358,8 +447,8 @@ async function fetchLastFive(userId){
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td>${tsToDate(d.date)}</td>
+        <td>${d.subject || "-"}</td>
         <td>${d.userName || "-"}</td>
-        <td>${d.chapter || "-"}</td>      
         <td>${d.correctAnswers ?? 0}</td>
         <td>${d.incorrectAnswers ?? 0}</td>
         <td>${d.timeTaken ? d.timeTaken + " sec" : "-"}</td>
@@ -417,7 +506,6 @@ function humanAuthError(e){
 /* ---------- Nav ---------- */
 // From quiz screen → go back to chapters of the same class
 $("back-to-subjects").onclick = () => show("chapters");
-
 // From chapters screen → go back to class list
 $("back-to-subjects-2").onclick = () => show("subjects");
 
@@ -434,5 +522,3 @@ $("play-again-btn").onclick = () => {
 $("celebrate-close").onclick = () => {
   $("celebrate-overlay").style.display = "none";
 };
-
-
