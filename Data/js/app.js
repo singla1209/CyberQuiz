@@ -46,6 +46,11 @@ function show(id){
   target.style.display = 'flex';
   requestAnimationFrame(()=>{ target.style.opacity = '1'; target.classList.add('active'); });
 
+  // 🛑 stop timer if leaving quiz
+  if(id !== "quiz"){
+    stopTimer();
+  }
+  
   if(id === "quiz" && auth.currentUser){
     fetchLastFive();
   }
@@ -92,8 +97,8 @@ let questions = [];
 let idx = 0, correct = 0, incorrect = 0, responses = [];
 let quizStartMs = null;
 
-/* ---------- Timer state (used across functions) ---------- */
-let timerId = null; // used in choose(), renderQuestion(), finishQuiz()
+/* ---------- Timer state ---------- */
+let timerId = null;
 
 /* Build subject buttons */
 const list = $("subject-list");
@@ -180,7 +185,6 @@ async function startSubject(s){
     if(res.ok){
       files = await res.json();
     } else {
-      // fallback check (1..100.json)
       for(let i=1;i<=100;i++){
         const tryUrl = RAW_BASE + s.path + i + ".json";
         const head = await fetch(tryUrl, { method:"HEAD" });
@@ -268,36 +272,48 @@ function renderQuestion(){
   startTimer(30);
 }
 
-function choose(selectedKey, el) {
-  document.querySelectorAll(".option").forEach(o => o.style.pointerEvents = "none");
-  const q = questions[idx];
+/* ---------- Shared answer handler ---------- */
+function recordAnswer(q, selectedKey, isTimeout = false) {
   const correctKey = q._correctKey;
+  const correctObj = q._optionsArr.find(x => x.key === correctKey);
+  const correctAnswer = correctObj ? correctObj.text : "";
 
-  // highlight correct answer
+  let selectedAnswer = "No Answer";
+  if (isTimeout) {
+    selectedAnswer = "No Answer (timeout)";
+    incorrect++;
+    document.getElementById("wrong-sound").play();
+  } else {
+    const selectedObj = q._optionsArr.find(x => x.key === selectedKey);
+    selectedAnswer = selectedObj ? selectedObj.text : "No Answer";
+
+    if (selectedKey === correctKey) {
+      correct++;
+      document.getElementById("correct-sound").play();
+    } else {
+      incorrect++;
+      document.getElementById("wrong-sound").play();
+    }
+  }
+
+  responses.push({ question: q.question, selected: selectedAnswer, correct: correctAnswer });
+
   document.querySelectorAll(".option").forEach(o => {
     const isCorrect = q._optionsArr.find(x => x.text === o.textContent)?.key === correctKey;
     if (isCorrect) o.classList.add("correct");
   });
 
-  if (selectedKey !== correctKey) el.classList.add("wrong");
-
-  const selectedObj = q._optionsArr.find(x => x.key === selectedKey);
-  const correctObj  = q._optionsArr.find(x => x.key === correctKey);
-  const selectedAnswer = selectedObj ? selectedObj.text : "No answer";
-  const correctAnswer  = correctObj  ? correctObj.text  : "";
-
-  responses.push({ question: q.question, selected: selectedAnswer, correct: correctAnswer });
-
-  if (selectedKey === correctKey) {
-    correct++;
-    document.getElementById("correct-sound").play();   // ✅ play correct sound
-  } else {
-    incorrect++;
-    document.getElementById("wrong-sound").play();     // ✅ play wrong sound
-  }
-
   $("stats").textContent = `✅ Correct: ${correct}  |  ❌ Incorrect: ${incorrect}`;
   $("bar-inner").style.width = `${((idx+1)/questions.length)*100}%`;
+}
+
+function choose(selectedKey, el) {
+  document.querySelectorAll(".option").forEach(o => o.style.pointerEvents = "none");
+  const q = questions[idx];
+
+  if (selectedKey !== q._correctKey) el.classList.add("wrong");
+
+  recordAnswer(q, selectedKey, false);
 
   setTimeout(() => {
     if (idx < questions.length - 1) {
@@ -309,6 +325,19 @@ function choose(selectedKey, el) {
   }, 800);
 }
 
+function handleTimeUp() {
+  const q = questions[idx];
+  recordAnswer(q, null, true);
+
+  setTimeout(() => {
+    if (idx < questions.length - 1) {
+      idx++;
+      renderQuestion();
+    } else {
+      finishQuiz();
+    }
+  }, 800);
+}
 
 /* ---------- Timer (Circular, wrong on timeout) ---------- */
 const radius = 100;
@@ -320,8 +349,9 @@ function startTimer(totalTime) {
 
   const display = document.getElementById("time-left");
   const progressCircle = document.querySelector(".progress");
+  const tickSound = document.getElementById("tick-sound");
 
-  if (!display || !progressCircle) return; // if timer UI not present
+  if (!display || !progressCircle) return;
 
   display.textContent = timeLeft;
   progressCircle.style.strokeDasharray = circumference;
@@ -330,10 +360,13 @@ function startTimer(totalTime) {
 
   timerId = setInterval(() => {
     timeLeft--;
-      // 🔔 play tick sound every second
-  document.getElementById("tick-sound").play();
-    display.textContent = timeLeft;
 
+    if (tickSound) {
+      tickSound.currentTime = 0;
+      tickSound.play().catch(() => {});
+    }
+
+    display.textContent = timeLeft;
     const offset = circumference - (timeLeft / totalTime) * circumference;
     progressCircle.style.strokeDashoffset = offset;
 
@@ -352,45 +385,20 @@ function startTimer(totalTime) {
   }, 1000);
 }
 
-function handleTimeUp() {
-  const q = questions[idx];
-  const correctKey = q._correctKey;
+function stopTimer() {
+  clearInterval(timerId);
+  timerId = null;
 
-  incorrect++;
-  document.getElementById("wrong-sound").play();   // 🔊 play wrong sound
-
-  // ✅ highlight the correct answer
-  document.querySelectorAll(".option").forEach(o => {
-    const isCorrect = q._optionsArr.find(x => x.text === o.textContent)?.key === correctKey;
-    if (isCorrect) o.classList.add("correct");
-  });
-
-  const correctObj  = q._optionsArr.find(x => x.key === correctKey);
-  const correctAnswer = correctObj ? correctObj.text : "";
-
-  responses.push({ 
-    question: q.question, 
-    selected: "No Answer (timeout)", 
-    correct: correctAnswer 
-  });
-
-  $("stats").textContent = `✅ Correct: ${correct}  |  ❌ Incorrect: ${incorrect}`;
-  $("bar-inner").style.width = `${((idx+1)/questions.length)*100}%`;
-
-  // 🕒 pause like wrong answer click
-  setTimeout(() => {
-    if (idx < questions.length - 1) {
-      idx++;
-      renderQuestion();
-    } else {
-      finishQuiz();
-    }
-  }, 800);
+  const tickSound = document.getElementById("tick-sound");
+  if (tickSound) {
+    tickSound.pause();
+    tickSound.currentTime = 0;
+  }
 }
 
-
+/* ---------- Finish quiz ---------- */
 async function finishQuiz(){
-  clearInterval(timerId); // stop timer
+  clearInterval(timerId);
   $("question").textContent = "All done!";
   $("options").innerHTML = "";
   $("end-screen").style.display = "block";
@@ -417,7 +425,6 @@ async function finishQuiz(){
     console.error("Save failed:", e); 
   }
 
-  /* ---------- Show celebration overlay ---------- */
   $("big-name").textContent = userName || "Great Job!";
   $("motivation").textContent = `You scored ${correct} out of ${questions.length}!`;
   $("celebrate-overlay").style.display = "flex";
@@ -504,9 +511,7 @@ function humanAuthError(e){
 }
 
 /* ---------- Nav ---------- */
-// From quiz screen → go back to chapters of the same class
 $("back-to-subjects").onclick = () => show("chapters");
-// From chapters screen → go back to class list
 $("back-to-subjects-2").onclick = () => show("subjects");
 
 /* ---------- Play Again ---------- */
