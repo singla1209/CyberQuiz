@@ -289,8 +289,7 @@ function choose(selectedKey, el){
   $("bar-inner").style.width = `${((idx+1)/questions.length)*100}%`;
 
   setTimeout(()=>{
-    if(idx < questions.length-1){ idx++; renderQuestion(); 
-              pushHistoryState(idx);                   
+    if(idx < questions.length-1){ idx++; renderQuestion();              
                                 }
     else { finishQuiz(); }
   }, 800);
@@ -435,35 +434,5 @@ $("play-again-btn").onclick = () => {
 $("celebrate-close").onclick = () => {
   $("celebrate-overlay").style.display = "none";
 };
-
-
-
-/* ---------- Back Button Handling ---------- */
-function pushHistoryState(qIndex){
-  history.pushState({ q: qIndex }, "", `#q${qIndex}`);
-}
-
-window.onpopstate = function(event){
-  if(event.state && event.state.q !== undefined){
-    idx = event.state.q;
-    renderQuestion();
-  } else {
-    if(confirm("Do you really want to exit the quiz?")){
-      window.close();
-    } else {
-      pushHistoryState(idx); // restore state so back button keeps working
-    }
-  }
-};
-
-
-
-// Run this only when quiz actually starts
-function initQuizHistory(){
-  history.replaceState({ q: idx }, "", `#q${idx}`);
-}
-
-
-
 
 
