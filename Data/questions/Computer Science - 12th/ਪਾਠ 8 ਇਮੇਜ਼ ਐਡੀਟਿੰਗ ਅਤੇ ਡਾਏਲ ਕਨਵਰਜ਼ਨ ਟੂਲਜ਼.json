@@ -1,0 +1,79 @@
+[
+  {
+    "question": "______ ਟੂਲ ਫਰੀ ਹੈਂਡ ਨਾਲ ਤਸਵੀਰ ਨੂੰ ਸਿਲੈਕਟ ਕਰਨ ਦੀ ਆਗਿਆ ਦਿੰਦਾ ਹੈ।",
+    "options": { "A": "Lasso", "B": "Text", "C": "Bucket Fill", "D": "Fuzzy Selection" },
+    "correct": "A"
+  },
+  {
+    "question": "SHIFT+C ______ ਦੀ ਸ਼ਾਰਟਕਟ ਕੁੰਜੀ ਹੈ।",
+    "options": { "A": "ਲੇਅਰ ਨੂੰ ਮਿਟਾਉਣ (Delete) ਦੀ", "B": "ਤਸਵੀਰ ਨੂੰ ਕਾਪੀ ਕਰਨ ਦੀ", "C": "ਤਸਵੀਰ ਨੂੰ ਕਰਪ (Crop) ਕਰਨ ਦੀ", "D": "ਡੂਪਲੀਕੇਟ ਇਮੇਜ ਬਣਾਉਣ ਦੀ" },
+    "correct": "C"
+  },
+  {
+    "question": "Scale ਆਪਸ਼ਨ ਇਮੇਜ ਦਾ ______ ਬਦਲਣ ਲਈ ਵਰਤੀ ਜਾਂਦੀ ਹੈ।",
+    "options": { "A": "Size (ਆਕਾਰ)", "B": "Colour (ਰੰਗ)", "C": "Contrast (ਕਾਂਟਰਾਸਟ)", "D": "Exposure" },
+    "correct": "A"
+  },
+  {
+    "question": "________ ਉਹ ਸਿਸਟਮ/ਸਰਵੇਸ ਹੈ ਜਿਸਦੇ ਇੱਕ ਦੂਜੇ ਦੇ ਉੱਪਰ ਨਸਲ ਆਂਦੀਆਂ ਹਨ।",
+    "options": { "A": "Masking", "B": "Tools", "C": "Layers", "D": "ਇਹਨਾਂ ਵਿੱਚੋਂ ਕੋਈ ਨਹੀਂ" },
+    "correct": "C"
+  },
+  {
+    "question": "________ ਟੂਲ ਐਕਟਿਵ ਲੇਅਰ ਦੀ ਡੂਪਲੀਕੇਟ ਕਾਪੀ ਬਣਾਉਣ ਵਿੱਚ ਮਦਦ ਕਰਦਾ ਹੈ।",
+    "options": { "A": "Smudge Tool", "B": "Dodge Tool", "C": "Perspective Tool", "D": "Duplicate Layer" },
+    "correct": "D"
+  },
+
+  {
+    "question": "Layer ਨੂੰ ਰੀਨੇਮ ਕਰਨ ਲਈ ______ ਟੂਲ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ।",
+    "options": { "A": "Move", "B": "", "C": "", "D": "" },
+    "correct": "A"
+  },
+  {
+    "question": "Layers ਨੂੰ ਮੁੜ ਕਰਨ ਲਈ ______ ਟੂਲ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ।",
+    "options": { "A": "Scale", "B": "", "C": "", "D": "" },
+    "correct": "A"
+  },
+  {
+    "question": "ਜਦੋਂ ਤਸਵੀਰ ਨੂੰ ______ ਕੀਤਾ ਜਾਂਦਾ ਹੈ ਤਾਂ ਤਸਵੀਰ ਦੀ ਕੁਆਲਿਟੀ ਘਟਦੀ ਹੈ।",
+    "options": { "A": "Scaled", "B": "", "C": "", "D": "" },
+    "correct": "A"
+  },
+  {
+    "question": "______ ਇਮੇਜ ਵਿੱਚੋਂ ਦਾ ਸੰਪੂਰਨ ਰੰਗ ਹੈ ਜਿਸੇ ਤਸਵੀਰ ਦਿਖਾਈ ਜਾਂਦੀ ਹੈ।",
+    "options": { "A": "Canvas", "B": "", "C": "", "D": "" },
+    "correct": "A"
+  },
+
+  {
+    "question": "ਨਵੀਂ ਫਾਈਲ ਬਣਾਉਣ ਲਈ",
+    "options": { "A": "Ctrl+N", "B": "", "C": "", "D": "" },
+    "correct": "A"
+  },
+  {
+    "question": "ਫਾਈਲ ਓਪਨ ਕਰਨ ਲਈ",
+    "options": { "A": "Ctrl+O", "B": "", "C": "", "D": "" },
+    "correct": "A"
+  },
+  {
+    "question": "ਡੂਪਲੀਕੇਟ ਇਮੇਜ ਬਣਾਉਣ ਲਈ",
+    "options": { "A": "Ctrl+D", "B": "", "C": "", "D": "" },
+    "correct": "A"
+  },
+  {
+    "question": "ਇਮੇਜ ਪ੍ਰਾਪਰਟੀਸ ਦੇਖਣ ਲਈ",
+    "options": { "A": "Alt+Enter", "B": "", "C": "", "D": "" },
+    "correct": "A"
+  },
+  {
+    "question": "ਇਮੇਜ ਨੂੰ ਕਰਪ ਕਰਨ ਲਈ",
+    "options": { "A": "Shift+C", "B": "", "C": "", "D": "" },
+    "correct": "A"
+  },
+  {
+    "question": "ਲੇਅਰਜ਼ ਨੂੰ ਮਰਜ ਕਰਨ ਲਈ",
+    "options": { "A": "Ctrl+M", "B": "", "C": "", "D": "" },
+    "correct": "A"
+  }
+]

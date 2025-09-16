@@ -1,0 +1,122 @@
+[
+  {
+    "question": "ਇੰਫਰਮੇਸ਼ਨ ਟੈਕਨਾਲੋਜੀ (ਆਈ. ਟੀ.) ਇੱਕ ਅਜਿਹਾ ਖੇਤਰ ਹੈ ਜਿਸਦੇ ਤਹਿਤ ਕੰਪਿਊਟਰ ਜਾਂ ਹੋਰ ਭੌਤਿਕ ਉਪਕਰਣ (ਹਾਰਡਵੇਅਰ, ਸਾਫਟਵੇਅਰ) ਦੀ ਵਰਤੋਂ ਇਲੈਕਟ੍ਰੋਨਿਕ ਡਾਟਾ ਨੂੰ ਬਣਾਉਣ, ________, ਸਟੋਰ ਕਰਨ ਅਤੇ ਆਖਰਕਾਰ ਪ੍ਰਦਾਨ ਕਰਨ ਲਈ ਕੀਤੀ ਜਾਂਦੀ ਹੈ।",
+    "options": {
+      "A": "ਐਕਸੈਸ ਕਰਨਾ",
+      "B": "ਪ੍ਰੋਸੈਸ ਕਰਨਾ",
+      "C": "ਪ੍ਰਭਾਸ਼ਿਤ ਕਰਨਾ",
+      "D": "ਸੇਵ ਕਰਨਾ"
+    },
+    "correct": "B"
+  },
+  {
+    "question": "ਆਨਲਾਈਨ ਸਿੱਖਿਆ ਸੇਵਾਵਾਂ ਦੀ ਸੁਵਿਧਾ ਨਾਲ, ਵਿਦਿਆਰਥੀ ________ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਕਿਸੇ ਵੀ ਜਗ੍ਹਾ ਬੈਠ ਕੇ ਵੀ ਸਿੱਖ ਸਕਦੇ ਹਨ।",
+    "options": {
+      "A": "ਇੰਟਰਨੈਟ",
+      "B": "ਬਿਜਲੀ",
+      "C": "5 ਜੀ ਟੈਕਨਾਲੋਜੀ",
+      "D": "ਈਮੇਲ"
+    },
+    "correct": "A"
+  },
+  {
+    "question": "ਐਂਡਰਾਇਡ ਆਪਰੇਟਿੰਗ ਸਿਸਟਮ ਇੱਕ ________ ਆਪਰੇਟਿੰਗ ਸਿਸਟਮ ਹੈ।",
+    "options": {
+      "A": "ਕੰਪਿਊਟਰ",
+      "B": "ਮੋਬਾਈਲ",
+      "C": "ਟੈਲੀਵੀਜ਼ਨ",
+      "D": "ਵਰਚੁਅਲ-ਰੀਅਲਟੀ"
+    },
+    "correct": "B"
+  },
+  {
+    "question": "ਕਲਾਉਡ ਕੰਪਿਊਟਿੰਗ ਇਕ ਕਿਸਮ ਦੀ ________ ਅਧਾਰਤ ਕੰਪਿਊਟਿੰਗ ਤਕਨਾਲੋਜੀ ਹੈ।",
+    "options": {
+      "A": "ਡਾਟਾ",
+      "B": "ਇੰਟਰਨੈਟ",
+      "C": "ਆਈ.ਓ.ਟੀ. (IoT)",
+      "D": "ਬਲੂਟੁੱਥ (Bluetooth)"
+    },
+    "correct": "B"
+  },
+  {
+    "question": "WiFi ਦਾ ਪੂਰਾ ਰੂਪ ਕੀ ਹੈ?",
+    "options": {
+      "A": "Wireless Fidelity",
+      "B": "Wired Fidelity",
+      "C": "Wide Fiber",
+      "D": "Wireless Format"
+    },
+    "correct": "A"
+  },
+  {
+    "question": "VR ਦਾ ਪੂਰਾ ਰੂਪ ਕੀ ਹੈ?",
+    "options": {
+      "A": "Virtual Reality",
+      "B": "Visual Reader",
+      "C": "Virtual Response",
+      "D": "Video Relay"
+    },
+    "correct": "A"
+  },
+  {
+    "question": "IoT ਦਾ ਪੂਰਾ ਰੂਪ ਕੀ ਹੈ?",
+    "options": {
+      "A": "Internet of Things",
+      "B": "Input Output Transfer",
+      "C": "Interconnected Online Technology",
+      "D": "Information over Transmission"
+    },
+    "correct": "A"
+  },
+  {
+    "question": "IT ਦਾ ਪੂਰਾ ਰੂਪ ਕੀ ਹੈ?",
+    "options": {
+      "A": "Information Technology",
+      "B": "Internet Technology",
+      "C": "Integrated Transmission",
+      "D": "Interface Tool"
+    },
+    "correct": "A"
+  },
+  {
+    "question": "GPS ਦਾ ਪੂਰਾ ਰੂਪ ਕੀ ਹੈ?",
+    "options": {
+      "A": "Global Positioning System",
+      "B": "General Processing System",
+      "C": "Global Programming Software",
+      "D": "Ground Position Setup"
+    },
+    "correct": "A"
+  },
+  {
+    "question": "________ ਇੱਕ ਟੈਕਨਾਲੋਜੀ ਹੈ ਜੋ ਵਾਇਰਲੈੱਸ ਹਾਈ ਸਪੀਡ ਇੰਟਰਨੈਟ ਅਤੇ ਨੈਟਵਰਕ ਕੁਨੈਕਸ਼ਨਾਂ ਲਈ ਰੇਡੀਓ ਵੇਵਜ਼ ਦੀ ਵਰਤੋਂ ਕਰਦੀ ਹੈ।",
+    "options": {
+      "A": "WiFi",
+      "B": "Virtual Reality (VR)",
+      "C": "ਮੋਬਾਈਲ",
+      "D": "ਕਲਾਉਡ"
+    },
+    "correct": "A"
+  },
+  {
+    "question": "________ ਦਾ ਅਰਥ ਹੈ ਸਾਨੂੰ ਕੰਪਿਊਟਰ ਦੁਆਰਾ ਉਪਲਬਧ ਚੀਜ਼ਾਂ ਦਾ ਅਨੁਭਵ ਕਰਵਾਉਣਾ ਜਿਹਨਾਂ ਨੂੰ ਅਸਲ ਵਿਚ ਮੌਜੂਦ ਨਹੀਂ ਹਨ।",
+    "options": {
+      "A": "IoT",
+      "B": "Virtual Reality",
+      "C": "ਐਂਡਰਾਇਡ",
+      "D": "ਆਈ. ਟੀ."
+    },
+    "correct": "B"
+  },
+  {
+    "question": "ਐਂਡਰਾਇਡ ਓ. ਐਸ. ਨੂੰ ________ ਕਾਮਰਾ ਵੀ ਕਿਹਾ ਜਾਂਦਾ ਹੈ।",
+    "options": {
+      "A": "ਸਟੋਰੇਜ ਡਾਟਾ",
+      "B": "ਸਮਾਰਟਫੋਨ ਡਾਟਾ ਅਤੇ ਸੁਵਿਧਾਵਾਂ ਦੀ ਆਨਲਾਈਨ ਸੇਵਾ",
+      "C": "ਸੋਫਟਵੇਅਰ ਟਰਮ",
+      "D": "ਕਲਾਉਡ"
+    },
+    "correct": "B"
+  }
+]
