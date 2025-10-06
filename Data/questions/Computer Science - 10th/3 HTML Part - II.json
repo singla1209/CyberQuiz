@@ -1,0 +1,102 @@
+[
+  {
+    "question": "Which tag defines an unordered list?",
+    "options": { "A": "<ul>", "B": "<ol>", "C": "<li>", "D": "<dl>" },
+    "correct": "A"
+  },
+  {
+    "question": "Which tag is used to define a list item?",
+    "options": { "A": "<li>", "B": "<ul>", "C": "<ol>", "D": "<dt>" },
+    "correct": "A"
+  },
+  {
+    "question": "Which element defines a table row?",
+    "options": { "A": "<td>", "B": "<tr>", "C": "<th>", "D": "<caption>" },
+    "correct": "B"
+  },
+  {
+    "question": "Which element defines a table header cell?",
+    "options": { "A": "<td>", "B": "<tr>", "C": "<th>", "D": "<thead>" },
+    "correct": "C"
+  },
+  {
+    "question": "Which tag groups table header content?",
+    "options": { "A": "<tbody>", "B": "<tfoot>", "C": "<thead>", "D": "<caption>" },
+    "correct": "C"
+  },
+  {
+    "question": "To merge two columns in a table cell, which attribute is used?",
+    "options": { "A": "rowspan", "B": "merge", "C": "colspan", "D": "span" },
+    "correct": "C"
+  },
+  {
+    "question": "Which tags are used in a description list?",
+    "options": { "A": "<ul>, <li>", "B": "<ol>, <li>", "C": "<dl>, <dt>, <dd>", "D": "<list>, <item>" },
+    "correct": "C"
+  },
+  {
+    "question": "Which element creates a single-line text input field?",
+    "options": { "A": "<input type='text'>", "B": "<textbox>", "C": "<text>", "D": "<field>" },
+    "correct": "A"
+  },
+  {
+    "question": "Which attribute makes a form input mandatory?",
+    "options": { "A": "required", "B": "must", "C": "needed", "D": "validate" },
+    "correct": "A"
+  },
+  {
+    "question": "Which tag groups related form controls with a title?",
+    "options": { "A": "<legend>", "B": "<fieldset>", "C": "<section>", "D": "<label>" },
+    "correct": "B"
+  },
+  {
+    "question": "Which input type is best for selecting one option among many?",
+    "options": { "A": "checkbox", "B": "radio", "C": "text", "D": "file" },
+    "correct": "B"
+  },
+  {
+    "question": "Which attribute links a label to an input field?",
+    "options": { "A": "for", "B": "to", "C": "id", "D": "name" },
+    "correct": "A"
+  },
+  {
+    "question": "Which element displays a drop-down list?",
+    "options": { "A": "<select>", "B": "<option>", "C": "<datalist>", "D": "All of these" },
+    "correct": "D"
+  },
+  {
+    "question": "Which attribute of <form> sets the target URL to submit data?",
+    "options": { "A": "action", "B": "method", "C": "target", "D": "name" },
+    "correct": "A"
+  },
+  {
+    "question": "Which method appends form data in the URL?",
+    "options": { "A": "POST", "B": "GET", "C": "PUT", "D": "SEND" },
+    "correct": "B"
+  },
+  {
+    "question": "To create a multi-line text area, which element is used?",
+    "options": { "A": "<input type='textarea'>", "B": "<textarea>", "C": "<textbox>", "D": "<multiline>" },
+    "correct": "B"
+  },
+  {
+    "question": "Which table element adds a caption for the table?",
+    "options": { "A": "<title>", "B": "<caption>", "C": "<summary>", "D": "<header>" },
+    "correct": "B"
+  },
+  {
+    "question": "Which attribute gives a form control a unique identifier?",
+    "options": { "A": "name", "B": "id", "C": "class", "D": "for" },
+    "correct": "B"
+  },
+  {
+    "question": "Which attribute groups related radio buttons?",
+    "options": { "A": "id", "B": "class", "C": "name", "D": "group" },
+    "correct": "C"
+  },
+  {
+    "question": "Which attribute provides hint text inside an input field?",
+    "options": { "A": "label", "B": "placeholder", "C": "title", "D": "hint" },
+    "correct": "B"
+  }
+]

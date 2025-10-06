@@ -1,0 +1,72 @@
+[
+  {
+    "question": "ਇਹਨਾਂ ਵਿੱਚੋਂ ਕਿਹੜਾ ਵਿਜੁਅਲ ਡਿਸਪਲੇ ਡਿਵਾਈਸ ਦੀ ਉਦਾਹਰਣ ਹੈ?",
+    "options": { "A": "ਮਾਨੀਟਰ (Monitor)", "B": "LCD", "C": "LED", "D": "ਉਪਰੋਕਤ ਸਾਰੇ" },
+    "correct": "D"
+  },
+  {
+    "question": "ਇਹਨਾਂ ਵਿੱਚੋਂ ਹਾਰਡ ਕਾਪੀ ਆਉਟਪੁਟ ਡਿਵਾਈਸ ਦੀ ਉਦਾਹਰਣ ਕਰੋ।",
+    "options": { "A": "ਸਪੀਕਰ (Speaker)", "B": "ਪ੍ਰਿੰਟਰ (Printer)", "C": "ਮਾਨੀਟਰ (Monitor)", "D": "ਇਹਨਾਂ ਵਿੱਚੋਂ ਕੋਈ ਨਹੀਂ" },
+    "correct": "B"
+  },
+  {
+    "question": "ਹੇਠਾਂ ਦਿੱਤਿਆਂ ਵਿੱਚੋਂ ਕਿਹੜਾ ਪ੍ਰਿੰਟਰ ਆਉਟਪੁਟ ਦੀ ਵੈਕਲਪਿਕ ਗੁਣਵੱਤਾ ਦੇਣ ਵਾਲਾ ਹੈ?",
+    "options": { "A": "ਲੇਜ਼ਰ ਪ੍ਰਿੰਟਰ", "B": "ਇੰਕਜੈਟ ਪ੍ਰਿੰਟਰ", "C": "ਡਾਟ ਮੈਟਰਿਕਸ ਪ੍ਰਿੰਟਰ", "D": "ਪਲਾਟਰ" },
+    "correct": "D"
+  },
+  {
+    "question": "ਹੇਠਾਂ ਦਿੱਤਿਆਂ ਵਿੱਚੋਂ ਕਿਹੜਾ ਸਾਊਂਡ ਦੀ ਵਰਤੋਂ ਕਰਦਾ ਹੈ?",
+    "options": { "A": "ਸਪੀਕਰ", "B": "ਹੋਮ ਥੀਏਟਰ", "C": "ਹੈਡਫੋਨ", "D": "ਇਹਨਾਂ ਵਿੱਚੋਂ ਕੋਈ ਨਹੀਂ" },
+    "correct": "A"
+  },
+  {
+    "question": "ਹੇਠਾਂ ਦਿੱਤਿਆਂ ਵਿੱਚੋਂ ਕਿਹੜਾ ਡਿਵਾਈਸ ਅੱਜ ਕੱਲ੍ਹ ਵਰਤੋਂ ਵਿੱਚ ਘੱਟ ਆਇਆ ਹੈ?",
+    "options": { "A": "ਪ੍ਰਿੰਟਰ", "B": "ਮਾਨੀਟਰ", "C": "ਪਲਾਟਰ", "D": "LED" },
+    "correct": "C"
+  },
+  {
+    "question": "ਪ੍ਰਿੰਟਰ ਇਕ ਆਉਟਪੁਟ ਡਿਵਾਈਸ (ਹਾਰਡਕਾਪੀ) ਹੈ।",
+    "options": { "A": "ਸਹੀ", "B": "ਗਲਤ" },
+    "correct": "A"
+  },
+  {
+    "question": "CRT ਮਾਨੀਟਰ ਇਕ ਇਲੈਕਟ੍ਰੋਨਿਕ ਬੀਮ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਆਉਟਪੁਟ ਦਿਖਾਉਂਦਾ ਹੈ।",
+    "options": { "A": "ਸਹੀ", "B": "ਗਲਤ" },
+    "correct": "A"
+  },
+  {
+    "question": "ਮਾਨੀਟਰ ਹਾਰਡ ਕਾਪੀ ਆਉਟਪੁਟ ਦੇਣ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ।",
+    "options": { "A": "ਸਹੀ", "B": "ਗਲਤ" },
+    "correct": "B"
+  },
+  {
+    "question": "ਸਪਾਟ ਸਕ੍ਰੀਨ ਵਾਲਾ ਮਾਨੀਟਰ LCD ਕਹਾਉਂਦਾ ਹੈ।",
+    "options": { "A": "ਸਹੀ", "B": "ਗਲਤ" },
+    "correct": "A"
+  },
+  {
+    "question": "LED ਮਾਨੀਟਰ ਵਿੱਚ ਪੁਰਾਣੇ CRT ਨਾਲੋਂ ਵਧੀਆ ਆਉਟਪੁਟ ਹੁੰਦੀ ਹੈ।",
+    "options": { "A": "ਸਹੀ", "B": "ਗਲਤ" },
+    "correct": "A"
+  },
+  {
+    "question": "CRT ਦਾ ਪੂਰਾ ਨਾਂ ਕੀ ਹੈ?",
+    "options": { "A": "Cathode Ray Tube", "B": "Control Ray Tube", "C": "Central Ray Tube", "D": "Computer Ray Tube" },
+    "correct": "A"
+  },
+  {
+    "question": "DMP ਦਾ ਪੂਰਾ ਨਾਂ ਕੀ ਹੈ?",
+    "options": { "A": "Dot Matrix Printer", "B": "Data Matrix Printer", "C": "Display Matrix Printer", "D": "Digital Matrix Printer" },
+    "correct": "A"
+  },
+  {
+    "question": "LCD ਦਾ ਪੂਰਾ ਨਾਂ ਕੀ ਹੈ?",
+    "options": { "A": "Liquid Crystal Display", "B": "Light Circuit Display", "C": "Logical Control Display", "D": "Linear Crystal Display" },
+    "correct": "A"
+  },
+  {
+    "question": "LED ਦਾ ਪੂਰਾ ਨਾਂ ਕੀ ਹੈ?",
+    "options": { "A": "Light Emitting Diode", "B": "Light Emitting Display", "C": "Logical Electronic Display", "D": "Linear Electric Diode" },
+    "correct": "A"
+  }
+]

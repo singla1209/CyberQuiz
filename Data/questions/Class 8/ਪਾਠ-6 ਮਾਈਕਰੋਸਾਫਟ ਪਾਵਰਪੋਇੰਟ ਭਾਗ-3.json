@@ -1,0 +1,47 @@
+[
+  {
+    "question": "ਜਦੋਂ ਸਲਾਈਡ ਸ਼ੋਅ ਦੌਰਾਨ ਇੱਕ ਸਲਾਈਡ ਤੋਂ ਦੂਜੀ ਤੇ ਜਾਈਦਾ ਹੈ ਤਾਂ ਦਿਖਣ ਵਾਲੇ ਵਿਜੁਅਲ/ਮੋਸ਼ਨ ਪ੍ਰਭਾਵਾਂ ਨੂੰ ______ ਕਿਹਾ ਜਾਂਦਾ ਹੈ।",
+    "options": { "A": "Slide Transitions", "B": "Animations", "C": "Animation Scheme", "D": "Slide Show" },
+    "correct": "A"
+  },
+  {
+    "question": "PowerPoint ਵਿੱਚ ਐਨੀਮੇਸ਼ਨ ਦੀਆਂ ਕਿਸਮਾਂ ਦੀ ਗਿਣਤੀ ______ ਹੈ।",
+    "options": { "A": "2", "B": "3", "C": "4", "D": "5" },
+    "correct": "C"
+  },
+  {
+    "question": "ਪਹਿਲਾਂ ਤੋਂ ਪਰਿਭਾਸ਼ਿਤ ਐਨੀਮੇਸ਼ਨ ਦਿੱਖਾਂ ਦੇ ਸਮੂਹ ਨੂੰ ______ ਕਿਹਾ ਜਾਂਦਾ ਹੈ।",
+    "options": { "A": "Slide Transitions", "B": "Animations", "C": "Animation Scheme", "D": "Motion Path" },
+    "correct": "C"
+  },
+  {
+    "question": "PDF ਦਾ ਪੂਰਾ ਨਾਮ ਕੀ ਹੈ?",
+    "options": { "A": "Portable Data Format", "B": "Portable Document Format", "C": "Public Document Form", "D": "Printable Doc Format" },
+    "correct": "B"
+  },
+  {
+    "question": "ਪਾਵਰਪੋਇੰਟ ਸ਼ੋਅ ਵਜੋਂ ਸੇਵ ਕਰਨ ਲਈ ਫਾਈਲ ਐਕਸਟੈਂਸ਼ਨ ______ ਹੁੰਦੀ ਹੈ।",
+    "options": { "A": ".ppt", "B": ".pptx", "C": ".ppsx", "D": ".pdf" },
+    "correct": "C"
+  },
+  {
+    "question": "ਟ੍ਰਾਂਜ਼ੀਸ਼ਨ ਇਫੈਕਟ ਲਾਗੂ ਕਰਨ ਲਈ ਕਿਹੜੇ ਟੈਬ ਦੀ ਵਰਤੋਂ ਹੁੰਦੀ ਹੈ?",
+    "options": { "A": "Animations", "B": "Transitions", "C": "Slide Show", "D": "Design" },
+    "correct": "B"
+  },
+  {
+    "question": "ਐਨੀਮੇਸ਼ਨ ਦੇ ਸਮੇਂ ਦੀ ਸੈਟਿੰਗ ਕਿੱਥੋਂ ਕੀਤੀ ਜਾਂਦੀ ਹੈ?",
+    "options": { "A": "Delay", "B": "Duration", "C": "Effect Options", "D": "Trigger" },
+    "correct": "B"
+  },
+  {
+    "question": "ਇਕ ਆਬਜੈਕਟ ਤੋਂ ਦੂਜੇ ਤੇ ਐਨੀਮੇਸ਼ਨ ਕਾਪੀ ਕਰਨ ਲਈ ਕਿਹੜਾ ਟੂਲ ਵਰਤਦੇ ਹੋ?",
+    "options": { "A": "Format Painter", "B": "Animation Painter", "C": "Design Ideas", "D": "Selection Pane" },
+    "correct": "B"
+  },
+  {
+    "question": "ਫਾਈਲ ਨੂੰ ਕਿਸੇ ਹੋਰ ਨਾਮ ਨਾਲ ਸੇਵ ਕਰਨ ਲਈ ਕੀ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ?",
+    "options": { "A": "Save", "B": "Save As", "C": "Export", "D": "Share" },
+    "correct": "B"
+  }
+]

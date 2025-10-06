@@ -1,0 +1,76 @@
+{
+  "mcqs": [
+    {
+      "question": "- Which option in MS Excel is not available in Page Layout Tab?",
+      "options": {
+        "A": "Orientation",
+        "B": "Page Size",
+        "C": "Print Area",
+        "D": "Print Titles"
+      },
+      "correct": "A"
+    },
+    {
+      "question": "Which option in MS Excel is not available in formulas?",
+      "options": {
+        "A": "Formulas",
+        "B": "Name Manager",
+        "C": "Page Layout",
+        "D": "Print Preview"
+      },
+      "correct": "A"
+    },
+    {
+      "question": "______ Worksheet data and printing pages are controlled by which option?",
+      "options": {
+        "A": "Page Size",
+        "B": "Print Area",
+        "C": "Margins",
+        "D": "Print Preview"
+      },
+      "correct": "C"
+    },
+    {
+      "question": "______ Print preview and print options are shown at top and bottom.",
+      "options": {
+        "A": "Footer",
+        "B": "Header",
+        "C": "Horizontal Margin",
+        "D": "None of these"
+      },
+      "correct": "B"
+    },
+    {
+      "question": "We can protect a worksheet from modification using __ option.",
+      "options": {
+        "A": "Save As",
+        "B": "Save",
+        "C": "Print Area",
+        "D": "Protect Sheet"
+      },
+      "correct": "D"
+    }
+  ],
+  "true_false": [
+    {
+      "question": "MS Excel cannot insert a watermark.",
+      "answer": "False"
+    },
+    {
+      "question": "We cannot remove page breaks manually once applied.",
+      "answer": "False"
+    },
+    {
+      "question": "Orientation is available in Page Layout tab.",
+      "answer": "True"
+    },
+    {
+      "question": "Margins can be set at top, bottom, left, and right of page.",
+      "answer": "True"
+    },
+    {
+      "question": "We can protect a worksheet from changes by using Protect Sheet option.",
+      "answer": "True"
+    }
+  ]
+}

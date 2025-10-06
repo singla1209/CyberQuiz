@@ -1,0 +1,57 @@
+[
+  {
+    "question": "ਇੱਕ ਕੰਪਿਊਟਰ ਸਿਸਟਮ _______ ਅਤੇ _______ ਭਾਗਾਂ ਦਾ ਸੁਮੇਲ ਹੈ।",
+    "options": { "A": "ਇੰਪੁਟ, ਆਉਟਪੁਟ", "B": "ਰੈਮ, ਰੋਮ", "C": "ਹਾਰਡਵੇਅਰ, ਸਾਫਟਵੇਅਰ", "D": "ਮਦਰਬੋਰਡ, ਪ੍ਰੋਸੈਸਰ" },
+    "correct": "C"
+  },
+  {
+    "question": "ਕੰਪਿਊਟਰ ਤੇ ਵੱਖ-ਵੱਖ ਕਾਰਜ ਕਰਨ ਲਈ ਵਰਤੇ ਜਾਣ ਵਾਲੇ ਕੰਪਿਊਟਰ ਪ੍ਰੋਗਰਾਮਾਂ ਦੇ ਸੈੱਟ ਨੂੰ ਕੀ ਕਿਹਾ ਜਾਂਦਾ ਹੈ?",
+    "options": { "A": "ਪ੍ਰੋਸੈਸਰ", "B": "ਐਪਲੀਕੇਸ਼ਨ ਸਾਫਟਵੇਅਰ", "C": "ਹਾਰਡਵੇਅਰ", "D": "ਸਾਫਟਵੇਅਰ" },
+    "correct": "B"
+  },
+  {
+    "question": "ਹੇਠਾਂ ਦਿੱਤਿਆਂ ਵਿੱਚੋਂ ਕਿਹੜਾ ਸਿਸਟਮ ਸਾਫਟਵੇਅਰ ਦੀ ਕਿਸਮ ਨਹੀਂ ਹੈ?",
+    "options": { "A": "ਆਪਰੇਟਿੰਗ ਸਿਸਟਮ", "B": "ਯੂਟਿਲਿਟੀ ਸਾਫਟਵੇਅਰ", "C": "ਐਪਲੀਕੇਸ਼ਨ ਸਾਫਟਵੇਅਰ", "D": "ਉਪਰੋਕਤ ਸਭ" },
+    "correct": "C"
+  },
+  {
+    "question": "ਮਾਈਕ੍ਰੋਸਾਫਟ ਵਰਡ ਅਤੇ ਐਕਸਲ _______ ਦੀਆਂ ਉਦਾਹਰਣਾਂ ਹਨ।",
+    "options": { "A": "ਆਪਰੇਟਿੰਗ ਸਿਸਟਮ", "B": "ਯੂਟਿਲਿਟੀ ਸਾਫਟਵੇਅਰ", "C": "ਐਪਲੀਕੇਸ਼ਨ ਸਾਫਟਵੇਅਰ", "D": "ਸਿਸਟਮ ਸਾਫਟਵੇਅਰ" },
+    "correct": "C"
+  },
+  {
+    "question": "ਹੇਠਾਂ ਦਿੱਤਿਆਂ ਵਿੱਚੋਂ ਕਿਹੜਾ ਕੰਪਿਊਟਰ ਸਿਸਟਮ ਦਾ ਭੌਤਿਕ ਹਾਰਡਵੇਅਰ ਭਾਗ ਹੈ?",
+    "options": { "A": "ਕੀਬੋਰਡ", "B": "ਮਾਊਸ", "C": "ਮਦਰਬੋਰਡ", "D": "ਸਾਰੇ ਉਪਰੋਕਤ" },
+    "correct": "D"
+  },
+  {
+    "question": "_______ ਸਾਫਟਵੇਅਰ ਕੰਪਿਊਟਰ ਸਿਸਟਮ ਦੇ ਸਾਰੇ ਸੰਸਾਧਨ ਅਤੇ ਅੰਦਰੂਨੀ ਕੰਮ ਨੂੰ ਕੰਟਰੋਲ ਕਰਦਾ ਹੈ।",
+    "options": { "A": "ਯੂਟਿਲਿਟੀ ਸਾਫਟਵੇਅਰ", "B": "ਐਪਲੀਕੇਸ਼ਨ ਸਾਫਟਵੇਅਰ", "C": "ਸਿਸਟਮ ਸਾਫਟਵੇਅਰ", "D": "ਉਪਰੋਕਤ ਸਾਰੇ" },
+    "correct": "C"
+  },
+  {
+    "question": "VDU ਦਾ ਪੂਰਾ ਨਾਂ ਕੀ ਹੈ?",
+    "options": { "A": "Visual Display Unit", "B": "Virtual Disk Utility", "C": "Visual Data Unit", "D": "Video Display Utility" },
+    "correct": "A"
+  },
+  {
+    "question": "LCD ਦਾ ਪੂਰਾ ਨਾਂ ਕੀ ਹੈ?",
+    "options": { "A": "Liquid Crystal Display", "B": "Large Computer Display", "C": "Logical Control Device", "D": "Liquid Circuit Display" },
+    "correct": "A"
+  },
+  {
+    "question": "RAM ਦਾ ਪੂਰਾ ਨਾਂ ਕੀ ਹੈ?",
+    "options": { "A": "Random Access Memory", "B": "Read All Memory", "C": "Run Active Memory", "D": "Ready Access Module" },
+    "correct": "A"
+  },
+  {
+    "question": "PCB ਦਾ ਪੂਰਾ ਨਾਂ ਕੀ ਹੈ?",
+    "options": { "A": "Printed Circuit Board", "B": "Process Control Board", "C": "Power Control Box", "D": "Primary Circuit Base" },
+    "correct": "A"
+  },
+  {
+    "question": "SMPS ਦਾ ਪੂਰਾ ਨਾਂ ਕੀ ਹੈ?",
+    "options": { "A": "Switch Mode Power Supply", "B": "System Main Power Supply", "C": "Standard Mode Power Source", "D": "Simple Main Power System" },
+    "correct": "A"
+  }
+]

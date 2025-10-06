@@ -1,0 +1,156 @@
+[
+  {
+    "question": "ਇੱਕ _______ ਕੰਪਿਊਟਰਾਂ ਦਾ ਸਮੂਹ ਹੈ ਜੋ ਇਕੱਠੇ ਜੋੜੇ ਹੋਏ ਹਨ।",
+    "options": {
+      "A": "ਨੈੱਟਵਰਕ",
+      "B": "ਸਿਸਟਮ",
+      "C": "ਪ੍ਰੋਟੋਕੋਲ",
+      "D": "ਇੰਟਰਨੈਟ"
+    },
+    "correct": "A"
+  },
+  {
+    "question": "______ ਅਸਲ ਵਿੱਚ ਮਲਟੀਪੋਰਟ ਰਪੀਟਰ ਹੈ।",
+    "options": {
+      "A": "ਹੱਬ (Hub)",
+      "B": "ਸਵਿਚ (Switch)",
+      "C": "ਰਾਊਟਰ (Router)",
+      "D": "ਬ੍ਰਿਜ (Bridge)"
+    },
+    "correct": "A"
+  },
+  {
+    "question": "______ ਇੱਕ 2 ਪੋਰਟ ਉਪਕਰਣ ਹੈ।",
+    "options": {
+      "A": "ਹੱਬ (Hub)",
+      "B": "ਸਵਿਚ (Switch)",
+      "C": "ਰਾਊਟਰ (Router)",
+      "D": "ਬ੍ਰਿਜ (Bridge)"
+    },
+    "correct": "D"
+  },
+  {
+    "question": "ਵਾਈ-ਫਾਈ ਦਾ ਅਰਥ ਹੈ ______",
+    "options": {
+      "A": "ਵਾਇਰਲੈੱਸ ਫਾਇਡੈਲੀਟੀ",
+      "B": "ਵਾਇਰਡ ਫਾਇਡੈਲੀਟੀ",
+      "C": "ਵਾਇਰਡ ਐਕਸੈਸ ਫੋਰਮੈਟ",
+      "D": "ਵਾਇਰ ਨੈੱਟਵਰਕ"
+    },
+    "correct": "A"
+  },
+  {
+    "question": "______ ਇੱਕ ਬ੍ਰਿਜ ਅਤੇ ਰਾਊਟਰ ਦਾ ਸੁਮੇਲ ਹੈ।",
+    "options": {
+      "A": "ਸਵਿਚ (Switch)",
+      "B": "ਬ੍ਰਿਜ (Bridge)",
+      "C": "ਹੱਬ (Hub)",
+      "D": "ਬ੍ਰਾਊਟਰ (Brouter)"
+    },
+    "correct": "D"
+  },
+  {
+    "question": "UTP ਦਾ ਪੂਰਾ ਨਾਂ ਕੀ ਹੈ?",
+    "options": {
+      "A": "Unshielded Twisted Pair",
+      "B": "Unified Transmission Protocol",
+      "C": "Universal Transfer Port",
+      "D": "Unlimited Transfer Protocol"
+    },
+    "correct": "A"
+  },
+  {
+    "question": "FTP ਦਾ ਪੂਰਾ ਨਾਂ ਕੀ ਹੈ?",
+    "options": {
+      "A": "Fast Transfer Program",
+      "B": "File Transfer Protocol",
+      "C": "File Transmission Port",
+      "D": "File Tracking Protocol"
+    },
+    "correct": "B"
+  },
+  {
+    "question": "SMTP ਦਾ ਪੂਰਾ ਨਾਂ ਕੀ ਹੈ?",
+    "options": {
+      "A": "Simple Mail Transfer Protocol",
+      "B": "System Mail Transfer Port",
+      "C": "Short Message Transfer Protocol",
+      "D": "Standard Mail Transmission Process"
+    },
+    "correct": "A"
+  },
+  {
+    "question": "POP ਦਾ ਪੂਰਾ ਨਾਂ ਕੀ ਹੈ?",
+    "options": {
+      "A": "Post Office Protocol",
+      "B": "Packet Order Process",
+      "C": "Protocol of Ports",
+      "D": "Program Output Protocol"
+    },
+    "correct": "A"
+  },
+  {
+    "question": "HTTP ਦਾ ਪੂਰਾ ਨਾਂ ਕੀ ਹੈ?",
+    "options": {
+      "A": "HyperText Transfer Protocol",
+      "B": "High Transfer Text Process",
+      "C": "Hyper Transfer Text Program",
+      "D": "Host Text Transfer Protocol"
+    },
+    "correct": "A"
+  },
+  {
+    "question": "MAC ਦਾ ਪੂਰਾ ਨਾਂ ਕੀ ਹੈ?",
+    "options": {
+      "A": "Media Access Control",
+      "B": "Main Access Channel",
+      "C": "Message Authentication Code",
+      "D": "Machine Access Communication"
+    },
+    "correct": "A"
+  },
+  {
+    "question": "OSI ਮਾਡਲ ਵਿੱਚ ਕੁੱਲ _______ ਲੇਅਰਾਂ ਹੁੰਦੀਆਂ ਹਨ।",
+    "options": {
+      "A": "7",
+      "B": "5",
+      "C": "9",
+      "D": "6"
+    },
+    "correct": "A"
+  },
+  {
+    "question": "OSI ਮਾਡਲ ਦੀ _______ ਲੇਅਰ ਡਿਵਾਈਸਾਂ ਇੰਟਰਫੇਸਿੰਗ ਦਾ ਕੰਮ ਕਰਦੀ ਹੈ।",
+    "options": {
+      "A": "ਨੈੱਟਵਰਕ",
+      "B": "ਡਾਟਾ ਲਿੰਕ",
+      "C": "ਟ੍ਰਾਂਸਪੋਰਟ",
+      "D": "ਐਪਲੀਕੇਸ਼ਨ"
+    },
+    "correct": "B"
+  },
+  {
+    "question": "ਮੀਡੀਆ ਵਿੱਚ ਕੇਬਲਾਂ ਦੀ ਵਰਤੋਂ ਨਾਲ ਸੰਚਾਰ ਕੀਤਾ ਜਾਂਦਾ ਹੈ।",
+    "options": {
+      "A": "ਗਲਤ",
+      "B": "ਸਹੀ"
+    },
+    "correct": "B"
+  },
+  {
+    "question": "ਬਲੂਟੁੱਥ (Bluetooth) ਮੀਡੀਆ ਦੀ ਉਦਾਹਰਣ ਹੈ।",
+    "options": {
+      "A": "ਗਲਤ",
+      "B": "ਸਹੀ"
+    },
+    "correct": "B"
+  },
+  {
+    "question": "ਸੰਚਾਰ ਮਾਡਲ ਵਿੱਚ ਡਾਟਾ ਦਾ ਸੰਚਾਰ ਸਿਰਫ਼ ਇੱਕ ਦਿਸ਼ਾ ਵਿੱਚ ਹੀ ਹੋ ਸਕਦਾ ਹੈ।",
+    "options": {
+      "A": "ਗਲਤ",
+      "B": "ਸਹੀ"
+    },
+    "correct": "A"
+  }
+]

@@ -1,0 +1,57 @@
+[
+  {
+    "question": "If we have to select one from two or more options during programming, then we will use which of the following option?",
+    "options": { "A": "Simple if", "B": "if elif else", "C": "Sequential Execution", "D": "None of these" },
+    "correct": "B"
+  },
+  {
+    "question": "How will you define the logical expression for the following condition? 'Marks are greater than or equal to 60 but less than 80'",
+    "options": { "A": "if marks>=80 and marks<60", "B": "if marks>60 and marks<=80", "C": "if marks>=60 and marks<=80", "D": "if marks>=60 and marks<80" },
+    "correct": "D"
+  },
+  {
+    "question": "When we use if else condition within another if else condition, it is called?",
+    "options": { "A": "else if Ladder", "B": "Simple if else", "C": "Nested if else", "D": "None of these" },
+    "correct": "C"
+  },
+  {
+    "question": "Conditional Flow Control is also known as ________.",
+    "options": { "A": "Branching Statement", "B": "Decision Making Statement", "C": "Looping Statement", "D": "Both a and b" },
+    "correct": "A"
+  },
+  {
+    "question": "Looping Statement is also known as ________.",
+    "options": { "A": "Iterative Statement", "B": "Conditional Statement", "C": "Sequential Statement", "D": "All of Above" },
+    "correct": "A"
+  },
+  {
+    "question": "If we have to repeat the execution of one or more statements, we can use ________.",
+    "options": { "A": "Iterative Statement", "B": "Conditional Statement", "C": "Skipping Statement", "D": "None of these" },
+    "correct": "A"
+  },
+  {
+    "question": "How will you define the range function for generating following sequence ('2,4,6,8,10,12,14,16')?",
+    "options": { "A": "range(2,16)", "B": "range(2,17)", "C": "range(2,17,2)", "D": "range(2,16,2)" },
+    "correct": "C"
+  },
+  {
+    "question": "When we use a loop within another loop, it is called?",
+    "options": { "A": "Infinite Loop", "B": "Nested Loop", "C": "for while Loop", "D": "None of these" },
+    "correct": "B"
+  },
+  {
+    "question": "A loop that never ends is called a:",
+    "options": { "A": "Continuous Loop", "B": "Infinite Loop", "C": "Circular Loop", "D": "None of these" },
+    "correct": "B"
+  },
+  {
+    "question": "The ______ statement in Python brings control out of the loop.",
+    "options": { "A": "break", "B": "back", "C": "pass", "D": "continue" },
+    "correct": "A"
+  },
+  {
+    "question": "Which of the following loop will continue infinitely?",
+    "options": { "A": "while 0:", "B": "while 1:", "C": "while -1:", "D": "while False:" },
+    "correct": "B"
+  }
+]
