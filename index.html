@@ -6,7 +6,7 @@
   <title>CyberQuiz</title> <!-- Title shown in browser tab -->
 
   <!-- Linking theme CSS (default theme first) -->
-  <link id="theme-link" rel="stylesheet" href="Data/css/style-default.css">
+  <link id="theme-link" rel="stylesheet" href="Data/css/style-blue-purple.css">
 
   <style>
   /* ====== Answer Options Layout ====== */
@@ -30,8 +30,8 @@
   /* ====== Circular Timer Styles (aligned with JS radius=100) ====== */
   .timer-container {
     position: relative;
-    width: 220px;
-    height: 220px;
+    width: 110px;
+    height: 110px;
     margin: 16px auto;
   }
   .timer-container svg {
@@ -40,7 +40,7 @@
   }
   .timer-container circle {
     fill: none;
-    stroke-width: 12;
+    stroke-width: 2;
     stroke-linecap: round;
   }
   .timer-container .bg {
@@ -55,7 +55,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 2.2rem;
+    font-size: 1.5rem;
     font-weight: 800;
     color: #f8fafc;
     text-align: center;
@@ -111,52 +111,17 @@
       <section id="subjects">
         <div>
           <h2 id="hello"></h2> <!-- Will show: Hello [User Name] -->
-          <p>Select a Class to begin:</p>
-          <div id="subject-list"></div> <!-- Subjects added dynamically -->
-          <div class="top-actions">
-            <button class="btn secondary" id="logout-1">Logout</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- ======= CHAPTERS SECTION ======= -->
-      <section id="chapters">
-        <div>
-          <h2 id="chapters-title">Choose a chapter</h2>
-          <p class="muted" id="chapters-subtitle">NCERT Class 10 • Session 2025–26</p>
-          <div id="chapter-list"></div>
-          <div class="top-actions">
-            <button class="btn secondary" id="back-to-subjects-2">Back to Main Menu</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- ======= QUIZ SECTION ======= -->
-      <section id="quiz">
-        <div id="quiz-wrapper">
-          <h2 id="welcome-banner"></h2>
-          <div class="stats" id="stats">✅ Correct: 0   |   ❌ Incorrect: 0</div>
-          <div class="muted" id="qprogress" style="text-align:center">Question 1/1</div>
-          <div class="bar"><div id="bar-inner"></div></div>
-
-          <!-- 🔵 Circular Timer (added here, above the question-card) -->
-          <div class="timer-container">
-            <svg width="220" height="220">
-              <circle class="bg" cx="110" cy="110" r="100"></circle>
-              <circle class="progress" cx="110" cy="110" r="100"></circle>
-            </svg>
-            <div class="time" id="time-left">30</div>
-          </div>
-          <!-- 🔵 End Timer -->
-
-          <div class="quiz-card">
-            <div id="question">Loading…</div>
-            <div id="options"></div>
+          <div id="main-menu-content">
+            <p>Select a Class to begin:</p>
+            <div id="subject-list"></div> <!-- Subjects added dynamically -->
+            <div class="top-actions">
+              <button class="btn secondary" id="logout-main">Logout</button>
+              <button class="btn" id="result-btn">Result</button>
+            </div>
           </div>
 
-          <div id="end-screen" style="display:none;margin-top:14px;text-align:center"></div>
-
-          <div id="results-panel">
+          <!-- Add style to hide results panel initially -->
+          <div id="results-panel" style="margin-top: 20px; display: none;">
             <h3>Last 5 Results</h3>
             <div class="results-box">
               <table>
@@ -177,6 +142,50 @@
             </div>
           </div>
 
+          <div id="results-buttons" style="display:none; margin-top: 12px;">
+            <button class="btn" id="return-to-menu">Return to Main Menu</button>
+            <button class="btn secondary" id="logout-results">Logout</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======= CHAPTERS SECTION ======= -->
+      <section id="chapters">
+        <div>
+          <h2 id="chapters-title">Choose a chapter</h2>
+          <p class="muted" id="chapters-subtitle">NCERT Class 10 • Session 2025–26</p>
+          <div id="chapter-list"></div>
+          <div class="top-actions">
+            <button class="btn secondary" id="back-to-subjects-2">Back to Main Menu</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======= QUIZ SECTION ======= -->
+      <section id="quiz">
+        <div id="quiz-wrapper">
+          <h2 id="welcome-banner"></h2>
+          <div class="stats" id="stats">✅ Correct: 0   |   ❌ Incorrect: 0</div>
+          <div class="muted" id="qprogress" style="text-align:center">Question 1/1</div>
+          <div class="bar"><div id="bar-inner"></div></div>
+
+          <!-- 🔵 Circular Timer (added here, above the question-card) -->
+          <div class="timer-container">
+            <svg width="110" height="110">
+              <circle class="bg" cx="55" cy="55" r="50"></circle>
+              <circle class="progress" cx="55" cy="55" r="50"></circle>
+            </svg>
+            <div class="time" id="time-left">30</div>
+          </div>
+          <!-- 🔵 End Timer -->
+
+          <div class="quiz-card">
+            <div id="question">Loading…</div>
+            <div id="options"></div>
+          </div>
+
+          <div id="end-screen" style="display:none;margin-top:14px;text-align:center"></div>
+
           <div class="top-actions" style="margin-top:14px">
             <button class="btn secondary" id="back-to-subjects">Choose another Chapter</button>
             <button class="btn secondary" id="logout-2">Logout</button>
@@ -184,7 +193,7 @@
 
           <audio id="correct-sound" preload="auto" src="Data/sound/correct.mp3"></audio>
           <audio id="wrong-sound" preload="auto" src="Data/sound/wrong.mp3"></audio>
-	  <audio id="tick-sound" preload="auto" src="Data/sound/tick.mp3"></audio>
+          <audio id="tick-sound" preload="auto" src="Data/sound/tick.mp3"></audio>
 
         </div>
       </section>
@@ -215,7 +224,7 @@
   </div>
 
   <!-- ================== SCRIPTS ================== -->
-  <script src="js/include.js"></script>
+  
   <script type="module" src="Data/js/app.js"></script>
   <div class="developer-name">© 2025 GSSSS Chappar</div>
 
@@ -224,7 +233,6 @@
 
   <script>
     const themes = [
-      "Data/css/style-default.css",
       "Data/css/style-blue-purple.css",
       "Data/css/style-green-cyan.css",
       "Data/css/style-pink-teal.css"
@@ -243,8 +251,36 @@
       themeLink.href = next;
       localStorage.setItem("theme", next);
     });
+
+    // Toggle code for showing & hiding results
+    const resultBtn = document.getElementById('result-btn');
+    const returnBtn = document.getElementById('return-to-menu');
+    const mainMenuContent = document.getElementById('main-menu-content');
+    const resultsPanel = document.getElementById('results-panel');
+    const resultsButtons = document.getElementById('results-buttons');
+    const logoutMainBtn = document.getElementById('logout-main');
+    const logoutResultsBtn = document.getElementById('logout-results');
+
+    resultBtn.addEventListener('click', () => {
+      mainMenuContent.style.display = 'none';
+      resultsPanel.style.display = 'block';
+      resultsButtons.style.display = 'flex';
+      resultBtn.style.display = 'none';
+      logoutMainBtn.style.display = 'none';
+    });
+
+    returnBtn.addEventListener('click', () => {
+      mainMenuContent.style.display = 'block';
+      resultsPanel.style.display = 'none';
+      resultsButtons.style.display = 'none';
+      resultBtn.style.display = 'inline-block';
+      logoutMainBtn.style.display = 'inline-block';
+    });
+
+    logoutResultsBtn.addEventListener('click', () => {
+       signOut(auth);
+    });
   </script>
 
 </body>
 </html>
-
