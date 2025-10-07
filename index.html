@@ -169,6 +169,9 @@
           <div class="muted" id="qprogress" style="text-align:center">Question 1/1</div>
           <div class="bar"><div id="bar-inner"></div></div>
 
+           <!-- 🔊 Speaker Toggle -->
+     <button id="sound-toggle" class="sound-btn" aria-label="Toggle Sound">🔊</button>
+
           <!-- 🔵 Circular Timer (added here, above the question-card) -->
           <div class="timer-container">
             <svg width="110" height="110">
@@ -281,6 +284,39 @@
        signOut(auth);
     });
   </script>
+
+  <script>
+  const soundToggle = document.getElementById("sound-toggle");
+  const tickSound = document.getElementById("tick-sound");
+  const correctSound = document.getElementById("correct-sound");
+  const wrongSound = document.getElementById("wrong-sound");
+
+  // Load saved mute state (default false)
+  let soundMuted = localStorage.getItem("quizSoundMuted") === "true";
+
+  // Apply initial state
+  function applySoundState() {
+    if (soundMuted) {
+      soundToggle.textContent = "🔇";
+      soundToggle.classList.add("muted");
+    } else {
+      soundToggle.textContent = "🔊";
+      soundToggle.classList.remove("muted");
+    }
+    [tickSound, correctSound, wrongSound].forEach(audio => {
+      if (audio) audio.muted = soundMuted;
+    });
+  }
+  applySoundState();
+
+  // Toggle on click
+  soundToggle.addEventListener("click", () => {
+    soundMuted = !soundMuted;
+    localStorage.setItem("quizSoundMuted", soundMuted); // save state
+    applySoundState();
+  });
+</script>
+
 
 </body>
 </html>
