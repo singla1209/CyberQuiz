@@ -108,6 +108,9 @@ let quizStartMs = null;
 
 /* ---------- Timer state ---------- */
 let timerId = null;
+/* ---------- Results listener state ---------- */
+let resultsUnsubscribe = null;
+let resultsListenerKey = null;
 
 /* Build subject buttons */
 const list = $("subject-list");
