@@ -4,7 +4,7 @@ import {
   getAuth, onAuthStateChanged, signInWithEmailAndPassword,
   createUserWithEmailAndPassword, updateProfile, signOut,
   GoogleAuthProvider, signInWithPopup, setPersistence,
-  browserLocalPersistence
+  browserLocalPersistencehttps://github.com/singla1209/CyberQuiz/edit/main/Data/js/app.js
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 import {
   getFirestore, doc, setDoc, deleteDoc,
@@ -563,6 +563,13 @@ async function fetchLastFive(userId){
     console.error("Error fetching last 5 results:", e);
   }
 }
+
+/* Refresh results when Results button is clicked */
+document.addEventListener("refresh-results", () => {
+  fetchLastFive();
+});
+
+
 function showResultDetails(result){
   const overlay = document.getElementById("modal-overlay");
   if (!overlay) return;
