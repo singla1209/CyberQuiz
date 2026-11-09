@@ -53,9 +53,6 @@ function show(id){
     stopTimer();
   }
   
-  if(id === "quiz" && auth.currentUser){
-    fetchLastFive();
-  }
 }
 function msg(text){ $("auth-msg").textContent = text || ""; }
 
