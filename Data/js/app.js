@@ -191,9 +191,16 @@ onAuthStateChanged(auth, async (user) => {
    show("subjects");
    startResultsListener(user.uid);
   } else {
-    userId = null;
-    show("auth");
+  // Stop the previous user's results listener
+  if (resultsUnsubscribe) {
+    resultsUnsubscribe();
+    resultsUnsubscribe = null;
   }
+
+  resultsListenerKey = null;
+  userId = null;
+  show("auth");
+}
 });
 
 /* ---------- Quiz + Chapters ---------- */
