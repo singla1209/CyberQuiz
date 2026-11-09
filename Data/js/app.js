@@ -463,27 +463,63 @@ async function finishQuiz(){
 }
 
 /* ---------- Last 5 Results ---------- */
+/* ---------- Last 5 Results ---------- */
 async function fetchLastFive(userId){
   try {
-    const uid = userId || (auth.currentUser && auth.currentUser.uid);
+    const current = auth.currentUser;
+    const uid = userId || (current && current.uid);
     if (!uid) return;
 
-    const qref = query(
-      collection(db, "quiz_results"),
-      orderBy("date", "desc"),
-      limit(5)
-    );
+    const admin = await isAdminUser(current);
+
+    const resultsCollection = collection(db, "quiz_results");
+
+    const qref = admin
+      ? query(
+          resultsCollection,
+          orderBy("date", "desc"),
+          limit(5)
+        )
+      : query(
+          resultsCollection,
+          where("uid", "==", uid),
+          orderBy("date", "desc"),
+          limit(5)
+        );
+
     const snapshot = await getDocs(qref);
 
     const tbody = document.getElementById("last5-body");
     if (!tbody) return;
+
+    // Update table header for Admin
+    const header = tbody.closest("table").querySelector("thead tr");
+    let actionHeader = header.querySelector("[data-admin-action]");
+
+    if (admin && !actionHeader) {
+      actionHeader = document.createElement("th");
+      actionHeader.textContent = "Action";
+      actionHeader.dataset.adminAction = "true";
+      header.appendChild(actionHeader);
+    } else if (!admin && actionHeader) {
+      actionHeader.remove();
+    }
+
     tbody.innerHTML = "";
+
+    if (snapshot.empty) {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `<td colspan="${admin ? 7 : 6}" class="muted">No results found.</td>`;
+      tbody.appendChild(tr);
+      return;
+    }
 
     snapshot.forEach(docSnap => {
       const d = docSnap.data();
-      if (d.uid !== uid) return;
 
       const tr = document.createElement("tr");
+      tr.style.cursor = "pointer";
+
       tr.innerHTML = `
         <td>${tsToDate(d.date)}</td>
         <td>${d.subject || "-"}</td>
@@ -492,15 +528,41 @@ async function fetchLastFive(userId){
         <td>${d.incorrectAnswers ?? 0}</td>
         <td>${d.timeTaken ? d.timeTaken + " sec" : "-"}</td>
       `;
-      tr.style.cursor = "pointer";
+
       tr.onclick = () => showResultDetails(d);
+
+      if (admin) {
+        const td = document.createElement("td");
+        const deleteBtn = document.createElement("button");
+
+        deleteBtn.textContent = "Delete";
+        deleteBtn.className = "btn secondary";
+
+        deleteBtn.onclick = async (event) => {
+          event.stopPropagation();
+
+          if (!confirm("Are you sure you want to delete this result?")) return;
+
+          try {
+            await deleteDoc(doc(db, "quiz_results", docSnap.id));
+            await fetchLastFive(uid);
+          } catch (error) {
+            console.error("Delete failed:", error);
+            alert("Could not delete this result.");
+          }
+        };
+
+        td.appendChild(deleteBtn);
+        tr.appendChild(td);
+      }
+
       tbody.appendChild(tr);
     });
+
   } catch (e) {
     console.error("Error fetching last 5 results:", e);
   }
 }
-
 function showResultDetails(result){
   const overlay = document.getElementById("modal-overlay");
   if (!overlay) return;
