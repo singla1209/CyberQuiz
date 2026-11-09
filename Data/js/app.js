@@ -7,8 +7,9 @@ import {
   browserLocalPersistence
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 import {
-  getFirestore, doc, setDoc,
-  collection, addDoc, serverTimestamp, query, orderBy, limit, getDocs
+  getFirestore, doc, setDoc, deleteDoc,
+  collection, addDoc, serverTimestamp,
+  query, where, orderBy, limit, getDocs
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 /* ---------- Config (Firebase project) ---------- */
