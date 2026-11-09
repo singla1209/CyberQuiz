@@ -188,8 +188,8 @@ onAuthStateChanged(auth, async (user) => {
     resultBtn.style.display = 'inline-block';
     logoutMainBtn.style.display = 'inline-block';
 
-    show("subjects");
-    fetchLastFive();
+   show("subjects");
+   startResultsListener(user.uid);
   } else {
     userId = null;
     show("auth");
