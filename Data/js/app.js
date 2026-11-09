@@ -633,6 +633,10 @@ async function startResultsListener(userId) {
   }
 }
 
+/* ---------- Refresh Results Event ---------- */
+document.addEventListener("refresh-results", () => {
+  startResultsListener();
+});
 
 function showResultDetails(result){
   const overlay = document.getElementById("modal-overlay");
