@@ -6,12 +6,13 @@ import {
   GoogleAuthProvider, signInWithPopup, setPersistence,
   browserLocalPersistence
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
 import {
-  getAuth, onAuthStateChanged, signInWithEmailAndPassword,
-  createUserWithEmailAndPassword, updateProfile, signOut,
-  GoogleAuthProvider, signInWithPopup, setPersistence,
-  browserLocalPersistence
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+  getFirestore, doc, setDoc, deleteDoc,
+  collection, addDoc, serverTimestamp,
+  query, where, orderBy, limit, getDocs, onSnapshot
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
 
 /* ---------- Config (Firebase project) ---------- */
 const firebaseConfig = {
