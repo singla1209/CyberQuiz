@@ -9,7 +9,7 @@ import {
 import {
   getFirestore, doc, setDoc, deleteDoc,
   collection, addDoc, serverTimestamp,
-  query, where, orderBy, limit, getDocs
+  query, where, orderBy, limit, getDocs, onSnapshot
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 /* ---------- Config (Firebase project) ---------- */
