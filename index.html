@@ -264,13 +264,16 @@
     const logoutMainBtn = document.getElementById('logout-main');
     const logoutResultsBtn = document.getElementById('logout-results');
 
-    resultBtn.addEventListener('click', () => {
-      mainMenuContent.style.display = 'none';
-      resultsPanel.style.display = 'block';
-      resultsButtons.style.display = 'flex';
-      resultBtn.style.display = 'none';
-      logoutMainBtn.style.display = 'none';
-    });
+   resultBtn.addEventListener('click', () => {
+  mainMenuContent.style.display = 'none';
+  resultsPanel.style.display = 'block';
+  resultsButtons.style.display = 'flex';
+  resultBtn.style.display = 'none';
+  logoutMainBtn.style.display = 'none';
+
+  // Fetch the latest results whenever Results is opened
+  document.dispatchEvent(new Event("refresh-results"));
+});
 
     returnBtn.addEventListener('click', () => {
       mainMenuContent.style.display = 'block';
