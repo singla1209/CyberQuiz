@@ -7,10 +7,11 @@ import {
   browserLocalPersistence
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 import {
-  getFirestore, doc, setDoc, deleteDoc,
-  collection, addDoc, serverTimestamp,
-  query, where, orderBy, limit, getDocs, onSnapshot
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+  getAuth, onAuthStateChanged, signInWithEmailAndPassword,
+  createUserWithEmailAndPassword, updateProfile, signOut,
+  GoogleAuthProvider, signInWithPopup, setPersistence,
+  browserLocalPersistence
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 /* ---------- Config (Firebase project) ---------- */
 const firebaseConfig = {
