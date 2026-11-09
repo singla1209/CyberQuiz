@@ -454,7 +454,7 @@ async function finishQuiz(){
         date: new Date()
       });
 
-            await fetchLastFive(current.uid);
+            
     }
   } catch(e){ 
     console.error("Save failed:", e); 
