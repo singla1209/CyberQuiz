@@ -66,6 +66,14 @@ function tsToDate(ts){
   try { return new Date(ts).toLocaleString(); } catch { return ""; }
 }
 
+/* ---------- Admin check ---------- */
+async function isAdminUser(user = auth.currentUser) {
+  if (!user) return false;
+
+  const tokenResult = await user.getIdTokenResult(true);
+  return tokenResult.claims.admin === true;
+}
+
 /* ---------- Paths ---------- */
 const RAW_BASE = "https://singla1209.github.io/CyberQuiz/Data/questions/";
 
