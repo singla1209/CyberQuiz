@@ -568,6 +568,71 @@ async function fetchLastFive(userId) {
 }
 
 
+/* ---------- Real-Time Results Listener ---------- */
+async function startResultsListener(userId) {
+  try {
+    const current = auth.currentUser;
+    const uid = userId || (current && current.uid);
+
+    if (!current || !uid) return;
+
+    const admin = await isAdminUser(current);
+    const listenerKey = `${uid}_${admin}`;
+
+    // Avoid creating duplicate listeners
+    if (resultsListenerKey === listenerKey && resultsUnsubscribe) {
+      return;
+    }
+
+    // Stop any previous listener
+    if (resultsUnsubscribe) {
+      resultsUnsubscribe();
+      resultsUnsubscribe = null;
+    }
+
+    resultsListenerKey = listenerKey;
+
+    const resultsCollection = collection(db, "quiz_results");
+
+    const qref = admin
+      ? query(resultsCollection, orderBy("date", "desc"), limit(5))
+      : query(
+          resultsCollection,
+          where("uid", "==", uid),
+          orderBy("date", "desc"),
+          limit(5)
+        );
+
+    resultsUnsubscribe = onSnapshot(
+      qref,
+      (snapshot) => {
+        renderLastFive(snapshot, admin);
+      },
+      async (error) => {
+        console.error("Real-time results listener failed:", error);
+
+        if (resultsUnsubscribe) {
+          resultsUnsubscribe();
+          resultsUnsubscribe = null;
+        }
+
+        resultsListenerKey = null;
+
+        // Fall back to normal Firestore fetching
+        await fetchLastFive(uid);
+      }
+    );
+
+  } catch (error) {
+    console.error("Could not start results listener:", error);
+    resultsListenerKey = null;
+
+    // Fall back to normal Firestore fetching
+    await fetchLastFive(userId);
+  }
+}
+
+
 function showResultDetails(result){
   const overlay = document.getElementById("modal-overlay");
   if (!overlay) return;
