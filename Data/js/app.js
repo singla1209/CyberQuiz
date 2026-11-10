@@ -440,15 +440,7 @@ async function finishQuiz(){
 
   const timeTakenSec = quizStartMs ? Math.round((Date.now() - quizStartMs)/1000) : 0;
 
-  console.log("QUIZ SAVE DEBUG:", {
-  uid: auth.currentUser?.uid,
-  correct,
-  incorrect,
-  responseCount: responses.length,
-  timeTakenSec,
-  responses
-});
-
+ 
   try{
     const current = auth.currentUser;
     if (current) {
