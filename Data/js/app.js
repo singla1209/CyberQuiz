@@ -4,7 +4,8 @@ import {
   getAuth, onAuthStateChanged, signInWithEmailAndPassword,
   createUserWithEmailAndPassword, updateProfile, signOut,
   GoogleAuthProvider, signInWithPopup, setPersistence,
-  browserLocalPersistence
+  browserLocalPersistence, deleteUser, EmailAuthProvider,
+  reauthenticateWithCredential, reauthenticateWithPopup
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 import {
@@ -887,4 +888,92 @@ $("celebrate-close").onclick = () => {
 $("play-again-btn").onclick = () => {
   $("celebrate-overlay").style.display = "none";
   show("subjects");
+};
+
+/* ---------- Delete My Account (native Android Settings) ---------- */
+// MainActivity calls this function through WebView.evaluateJavascript().
+// Reauthentication is completed BEFORE any Firestore records are deleted.
+window.deleteCyberQuizAccount = async function () {
+  const user = auth.currentUser;
+
+  if (!user) {
+    alert("Please sign in before deleting your account.");
+    show("auth");
+    return;
+  }
+
+  const confirmed = confirm(
+    "Permanently delete your Cyber Quiz account?\n\n" +
+    "This will delete your Firebase account, profile and ALL quiz history. " +
+    "This action cannot be undone."
+  );
+  if (!confirmed) return;
+
+  try {
+    // Firebase requires a recent sign-in before deleting an Authentication user.
+    const providers = (user.providerData || []).map(item => item.providerId);
+
+    if (providers.includes("password")) {
+      const password = prompt(
+        "For security, enter your current account password to confirm deletion:"
+      );
+      if (password === null) return;
+      if (!password) {
+        alert("Password is required. No account data was deleted.");
+        return;
+      }
+      const credential = EmailAuthProvider.credential(user.email, password);
+      await reauthenticateWithCredential(user, credential);
+    } else if (providers.includes("google.com")) {
+      await reauthenticateWithPopup(user, googleProvider);
+    } else {
+      alert(
+        "Firebase requires you to sign in again before account deletion. " +
+        "This sign-in method is not yet supported by the in-app deletion flow. " +
+        "No account data was deleted."
+      );
+      return;
+    }
+
+    // Delete every quiz result belonging to this UID, not other users' results.
+    const resultsQuery = query(
+      collection(db, "quiz_results"),
+      where("uid", "==", user.uid)
+    );
+    const resultsSnapshot = await getDocs(resultsQuery);
+
+    for (const resultDoc of resultsSnapshot.docs) {
+      await deleteDoc(doc(db, "quiz_results", resultDoc.id));
+    }
+
+    // Remove this user's profile document, if it exists.
+    await deleteDoc(doc(db, "users", user.uid));
+
+    // Delete the Firebase Authentication account last.
+    await deleteUser(user);
+
+    alert("Your Cyber Quiz account and quiz history have been permanently deleted.");
+    // onAuthStateChanged will move the app back to the sign-in screen.
+  } catch (error) {
+    console.error("Account deletion failed:", error);
+
+    if (error?.code === "auth/requires-recent-login") {
+      alert(
+        "Firebase requires a fresh sign-in. Please sign out, sign in again, " +
+        "then retry Delete My Account."
+      );
+    } else if (error?.code === "auth/wrong-password" ||
+               error?.code === "auth/invalid-credential") {
+      alert("The password was not accepted. No account data was deleted.");
+    } else if (error?.code === "auth/popup-blocked" ||
+               error?.code === "auth/popup-closed-by-user") {
+      alert("Google reauthentication did not complete. No account data was deleted.");
+    } else {
+      alert(
+        "Account deletion could not be completed. Check your internet connection " +
+        "and Firebase permissions, then try again. Details: " +
+        (error?.message || "Unknown error")
+      );
+    }
+  }
 };
