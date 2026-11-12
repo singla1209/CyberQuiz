@@ -140,28 +140,3 @@ tr:hover{background:rgba(255,255,255,.06);cursor:pointer}
 }
 
 
-/* Smaller circular quiz timer */
-.timer-container {
-  position: relative;
-  width: 90px;
-  height: 90px;
-  margin: 0 auto;
-}
-
-.timer-container svg {
-  width: 90px;
-  height: 90px;
-  display: block;
-  overflow: visible;
-}
-
-.timer-container .time {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 18px;
-  line-height: 1;
-  font-weight: 700;
-  white-space: nowrap;
-}
