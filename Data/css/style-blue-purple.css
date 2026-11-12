@@ -138,3 +138,14 @@ tr:hover{background:rgba(255,255,255,.06);cursor:pointer}
 .sound-btn.muted {
   color: #ff5555; /* red when muted */
 }
+
+
+/* Smaller circular quiz timer */
+.timer-container svg {
+  width: 80px;
+  height: 80px;
+}
+
+.timer-container .time {
+  font-size: 18px;
+}
