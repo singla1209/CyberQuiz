@@ -2,134 +2,388 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete Account - Cyber Quiz</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delete Cyber Quiz Account</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #081525;
-            color: #ffffff;
-            margin: 0;
-            padding: 20px;
-            line-height: 1.7;
-        }
-
-        .container {
-            max-width: 650px;
-            margin: 40px auto;
-            padding: 28px;
-            background: #13263D;
-            border-radius: 12px;
-        }
-
-        h1, h2 {
-            color: #55A9F2;
-        }
-
-        a {
-            color: #55A9F2;
-        }
-
-        .button {
-            display: inline-block;
-            background: #55A9F2;
-            color: #081525;
-            padding: 12px 20px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-
-        .note {
-            font-size: 14px;
-            color: #C5D3E0;
-        }
-    </style>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #081525;
+    color: white;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+.container {
+    max-width: 480px;
+    margin: 35px auto;
+    padding: 25px;
+    background: #13263D;
+    border-radius: 12px;
+}
+h1, h2 { color: #55A9F2; }
+input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    margin: 8px 0 15px;
+    border: 1px solid #55718e;
+    border-radius: 6px;
+    background: #081525;
+    color: white;
+}
+button {
+    width: 100%;
+    padding: 13px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 6px;
+    background: #55A9F2;
+    color: #081525;
+    font-weight: bold;
+    cursor: pointer;
+}
+button:disabled { opacity: .5; }
+.google {
+    background: white;
+    color: #222;
+}
+.note { color: #C5D3E0; font-size: 13px; }
+#message { white-space: pre-wrap; margin-top: 15px; }
+.danger { background: #d93636; color: white; }
+a { color: #55A9F2; }
+</style>
 </head>
 
 <body>
 <div class="container">
 
-    <h1>Delete Your Cyber Quiz Account</h1>
-
-    <p>
-        We respect your privacy and give you the option to request
-        permanent deletion of your Cyber Quiz account and associated data.
-    </p>
-
-    <h2>How to Request Account Deletion</h2>
-
-    <p>
-        If you cannot access the Cyber Quiz app, you can request
-        account deletion by contacting us through the email below.
-    </p>
-
-    <p>
-        Please send your request from your registered email address
-        and include the email address associated with your Cyber Quiz account.
-    </p>
-
-    
-<a class="button"
-   href="mailto:singla.arvind12@gmail.com?subject=Cyber%20Quiz%20Account%20Deletion%20Request">
-   Request Account Deletion
-</a>
+<h1>Delete Cyber Quiz Account</h1>
 
 <p>
-    If the button does not open your email application,
-    send your request manually to:
+Sign in using your existing Cyber Quiz account to request
+permanent deletion of your account and associated data.
 </p>
 
-<p>
-    <strong>
-        <a href="mailto:singla.arvind12@gmail.com">
-            singla.arvind12@gmail.com
-        </a>
-    </strong>
-</p>
+<div id="loginSection">
 
+    <label>Registered Email or Mobile Number</label>
+    <input id="loginId" type="text"
+           placeholder="Email address or mobile number"
+           autocomplete="username">
 
-    <h2>What Will Be Deleted?</h2>
+    <label>Password</label>
+    <input id="password" type="password"
+           placeholder="Your Cyber Quiz password"
+           autocomplete="current-password">
 
-    <ul>
-        <li>Your Cyber Quiz account.</li>
-        <li>Your user profile information.</li>
-        <li>Your associated quiz history and results.</li>
-        <li>Other personal data associated with your account, where applicable.</li>
-    </ul>
+    <button id="loginBtn">Sign In</button>
 
-    <h2>What Happens After Your Request?</h2>
+    <p style="text-align:center">OR</p>
 
-    <p>
-        We will review your request and may contact you to verify
-        ownership of the account before processing deletion.
-        Once verified, we will permanently delete your account
-        and associated data.
-    </p>
-
-    <p class="note">
-        Please do not send your password or other login credentials
-        by email.
-    </p>
-
-    <h2>Need Help?</h2>
-
-    <p>
-        Contact us at:
-        <a href="mailto:singla.arvind12@gmail.com">
-            singla.arvind12@gmail.com
-        </a>
-    </p>
-
-    <p>
-        <a href="https://singla1209.github.io/CyberQuiz/">
-            Back to Cyber Quiz
-        </a>
-    </p>
+    <button id="googleBtn" class="google">
+        Continue with Google
+    </button>
 
 </div>
+
+<div id="confirmSection" style="display:none">
+
+    <h2>Confirm Account Deletion</h2>
+
+    <p id="accountInfo"></p>
+
+    <p>
+    You are about to permanently delete:
+    </p>
+
+    <ul>
+        <li>Your Cyber Quiz Firebase account.</li>
+        <li>Your user profile.</li>
+        <li>Your associated quiz history and results.</li>
+    </ul>
+
+    <p class="note">
+    This action cannot be undone. Your identity will be
+    re-verified before deletion starts.
+    </p>
+
+    <button id="deleteBtn" class="danger">
+        Permanently Delete My Account
+    </button>
+
+    <button id="logoutBtn" class="google">
+        Cancel and Sign Out
+    </button>
+
+</div>
+
+<p id="message"></p>
+
+<p class="note">
+For assistance, contact
+<a href="mailto:singla.arvind12@gmail.com">
+singla.arvind12@gmail.com
+</a>
+</p>
+
+<p>
+<a href="https://singla1209.github.io/CyberQuiz/">
+Back to Cyber Quiz
+</a>
+</p>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    signInWithPopup,
+    GoogleAuthProvider,
+    EmailAuthProvider,
+    reauthenticateWithCredential,
+    reauthenticateWithPopup,
+    deleteUser,
+    signOut,
+    getAdditionalUserInfo
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    collection,
+    query,
+    where,
+    getDocs,
+    doc,
+    deleteDoc,
+    writeBatch
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDHMrrJXvUkQ5Dg_j7ekskEqmkP1f73YSs",
+    authDomain: "cyberquiz12.firebaseapp.com",
+    projectId: "cyberquiz12",
+    storageBucket: "cyberquiz12.firebasestorage.app",
+    messagingSenderId: "611229251719",
+    appId: "1:611229251719:web:851d64457f7ecfefcb6022"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const googleProvider = new GoogleAuthProvider();
+
+const $ = id => document.getElementById(id);
+
+let currentUser = null;
+
+function showMessage(message) {
+    $("message").textContent = message;
+}
+
+function showSignedInUser(user) {
+    currentUser = user;
+    $("loginSection").style.display = "none";
+    $("confirmSection").style.display = "block";
+    $("accountInfo").textContent =
+        "Signed in as: " + (user.email || user.displayName || "Cyber Quiz user");
+    showMessage("");
+}
+
+function setBusy(busy) {
+    $("loginBtn").disabled = busy;
+    $("googleBtn").disabled = busy;
+    $("deleteBtn").disabled = busy;
+    $("logoutBtn").disabled = busy;
+}
+
+
+// Email or mobile-number login
+$("loginBtn").onclick = async () => {
+    showMessage("");
+
+    let id = $("loginId").value.trim();
+    const password = $("password").value;
+
+    if (!id || !password) {
+        showMessage("Please enter your registered email/mobile number and password.");
+        return;
+    }
+
+    if (!id.includes("@")) {
+        id += "@mobile.com";
+    }
+
+    setBusy(true);
+
+    try {
+        const credential = await signInWithEmailAndPassword(
+            auth, id, password
+        );
+
+        showSignedInUser(credential.user);
+
+    } catch (error) {
+        console.error(error);
+        showMessage("Sign-in failed: " + error.message);
+    } finally {
+        setBusy(false);
+    }
+};
+
+
+// Google login - do not allow creation of a new account here
+$("googleBtn").onclick = async () => {
+    showMessage("");
+    setBusy(true);
+
+    try {
+        const result = await signInWithPopup(auth, googleProvider);
+
+        if (getAdditionalUserInfo(result)?.isNewUser) {
+            await deleteUser(result.user);
+            showMessage(
+                "This Google account is not registered with Cyber Quiz. " +
+                "Please use your existing account."
+            );
+            return;
+        }
+
+        showSignedInUser(result.user);
+
+    } catch (error) {
+        console.error(error);
+        showMessage("Google sign-in failed: " + error.message);
+    } finally {
+        setBusy(false);
+    }
+};
+
+
+// Re-authenticate, then delete this user's data
+$("deleteBtn").onclick = async () => {
+
+    if (!currentUser || auth.currentUser?.uid !== currentUser.uid) {
+        showMessage("Please sign in again.");
+        return;
+    }
+
+    const confirmed = confirm(
+        "Are you absolutely sure?\n\n" +
+        "Your Cyber Quiz account, profile and quiz history " +
+        "will be permanently deleted."
+    );
+
+    if (!confirmed) return;
+
+    setBusy(true);
+    showMessage("Verifying your identity...");
+
+    try {
+        const user = auth.currentUser;
+        const providers = user.providerData.map(p => p.providerId);
+
+        // Verify password accounts again.
+        if (providers.includes("password")) {
+
+            const password = prompt(
+                "Enter your current Cyber Quiz password again to verify your identity:"
+            );
+
+            if (password === null || !password) {
+                showMessage("Verification cancelled. Nothing was deleted.");
+                return;
+            }
+
+            const credential = EmailAuthProvider.credential(
+                user.email, password
+            );
+
+            await reauthenticateWithCredential(user, credential);
+
+        } else if (providers.includes("google.com")) {
+
+            await reauthenticateWithPopup(user, googleProvider);
+
+        } else {
+            throw new Error(
+                "This sign-in method is not supported for deletion yet."
+            );
+        }
+
+        // Fetch only quiz results belonging to this account.
+        showMessage("Preparing your account data for deletion...");
+
+        const resultsQuery = query(
+            collection(db, "quiz_results"),
+            where("uid", "==", user.uid)
+        );
+
+        const snapshot = await getDocs(resultsQuery);
+
+        // Delete results in batches of at most 450.
+        for (let i = 0; i < snapshot.docs.length; i += 450) {
+            const batch = writeBatch(db);
+
+            snapshot.docs.slice(i, i + 450).forEach(resultDoc => {
+                batch.delete(resultDoc.ref);
+            });
+
+            await batch.commit();
+        }
+
+        // Delete this user's profile.
+        await deleteDoc(doc(db, "users", user.uid));
+
+        // Delete Firebase Authentication account last.
+        await deleteUser(user);
+
+        currentUser = null;
+
+        $("confirmSection").style.display = "none";
+        $("loginSection").style.display = "block";
+        $("password").value = "";
+
+        showMessage(
+            "Your Cyber Quiz account and associated quiz history " +
+            "have been permanently deleted."
+        );
+
+    } catch (error) {
+        console.error("Account deletion failed:", error);
+
+        showMessage(
+            "Deletion could not be completed: " + error.message +
+            "\nPlease contact singla.arvind12@gmail.com if you need assistance."
+        );
+
+    } finally {
+        setBusy(false);
+    }
+};
+
+
+// Cancel
+$("logoutBtn").onclick = async () => {
+    await signOut(auth);
+    currentUser = null;
+
+    $("confirmSection").style.display = "none";
+    $("loginSection").style.display = "block";
+    $("password").value = "";
+
+    showMessage("You have signed out. No data was deleted.");
+};
+
+</script>
 </body>
 </html>
