@@ -51,8 +51,18 @@ a{color:var(--accent);text-decoration:none}
 .bar{height:10px;width:100%;max-width:480px;margin:8px auto;background:var(--card-2);border-radius:8px;overflow:hidden}
 .bar>div{height:100%;width:0%;background:var(--accent);transition:width .35s}
 .stats{margin:.5rem 0 .25rem;font-size:14px;opacity:.9;text-align:center}
-#welcome-banner{margin:.5rem 0 1rem;font-weight:700;text-align:center}
-#welcome-banner .name{color:var(--green);font-weight:900}
+#welcome-banner{
+  margin:.5rem 0 1rem;
+  font-weight:700;
+  text-align:center;
+  font-size:14px;
+}
+
+#welcome-banner .name{
+  color:var(--green);
+  font-weight:900;
+  font-size:14px;
+}
 .top-actions{display:flex;gap:10px;justify-content:center;margin-top:10px;flex-wrap:wrap}
 
 /* ===== Last 5 Results ===== */
