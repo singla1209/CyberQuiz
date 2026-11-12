@@ -865,23 +865,24 @@ function renderDonut(score, total){
   ctx.fillText(`${score}/${total}`, cx, cy+14);
 }
 
+
 function launchCelebration(pct){
-  let level = "low";
-  let m = pickRandom(messagesLow);
-  if(pct >= 80){ level = "high"; m = pickRandom(messagesHigh); }
-  else if(pct >= 50){ level = "mid"; m = pickRandom(messagesMid); }
+  if (pct >= 80) {
+    let m = pickRandom(messagesHigh);
 
-  $("celebrate-overlay").style.display = "flex";
-  $("big-name").textContent = `${userName || "Great Job!"}`;
-  $("motivation").textContent = m;
+    $("celebrate-overlay").style.display = "flex";
+    $("big-name").textContent = userName || "Great Job!";
+    $("motivation").textContent = m;
 
-  renderDonut(correct, questions.length);
-  startConfetti(level);
+    renderDonut(correct, questions.length);
+    startConfetti("high");
+  }
 }
 
 $("celebrate-close").onclick = () => {
   $("celebrate-overlay").style.display = "none";
 };
+
 $("play-again-btn").onclick = () => {
   $("celebrate-overlay").style.display = "none";
   show("subjects");
