@@ -104,6 +104,7 @@ let subject  = null;
 let currentChapterTitle = "";
 let questions = [];
 let idx = 0, correct = 0, incorrect = 0, responses = [];
+let questionAnswered = false;
 let quizStartMs = null;
 
 /* ---------- Timer state ---------- */
@@ -252,7 +253,7 @@ async function startChapterQuiz(s, fileName, prettyTitle){
 }
 
 async function beginQuizFromUrl(url, subjectLabel, chapterTitle){
-  idx = 0; correct = 0; incorrect = 0; responses = [];
+  idx = 0; correct = 0; incorrect = 0; questionAnswered = false; responses = [];
   quizStartMs = null;
   $("stats").textContent = `✅ Correct: 0  |  ❌ Incorrect: 0`;
   $("qprogress").textContent = `Question 1/1`;
@@ -343,7 +344,13 @@ function recordAnswer(q, selectedKey, isTimeout = false) {
 }
 
 function choose(selectedKey, el) {
+  if (questionAnswered) return;
+
+  questionAnswered = true;
+  stopTimer();
+
   document.querySelectorAll(".option").forEach(o => o.style.pointerEvents = "none");
+
   const q = questions[idx];
 
   if (selectedKey !== q._correctKey) el.classList.add("wrong");
@@ -353,6 +360,7 @@ function choose(selectedKey, el) {
   setTimeout(() => {
     if (idx < questions.length - 1) {
       idx++;
+      questionAnswered = false;
       renderQuestion();
     } else {
       finishQuiz();
@@ -360,13 +368,20 @@ function choose(selectedKey, el) {
   }, 800);
 }
 
+
 function handleTimeUp() {
+  if (questionAnswered) return;
+
+  questionAnswered = true;
+  stopTimer();
+
   const q = questions[idx];
   recordAnswer(q, null, true);
 
   setTimeout(() => {
     if (idx < questions.length - 1) {
       idx++;
+      questionAnswered = false;
       renderQuestion();
     } else {
       finishQuiz();
