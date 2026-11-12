@@ -508,12 +508,23 @@ function stopTimer() {
 
 /* ---------- Finish quiz ---------- */
 
+
 async function finishQuiz(){
   clearInterval(timerId);
+
   $("question").textContent = "All done!";
   $("options").innerHTML = "";
+
+  // Keep the existing Play Again button before rebuilding the result screen.
+  const playAgainBtn = $("play-again-btn");
+
   $("end-screen").style.display = "block";
   $("end-screen").innerHTML = `<h3>Score: ${correct} / ${questions.length}</h3>`;
+
+  // Move the existing button from the celebration overlay to the result screen.
+  if (playAgainBtn) {
+    $("end-screen").appendChild(playAgainBtn);
+  }
 
   const timeTakenSec = quizStartMs ? Math.round((Date.now() - quizStartMs)/1000) : 0;
 
@@ -545,6 +556,7 @@ async function finishQuiz(){
     $("celebrate-overlay").style.display = "none";
   }
 }
+
 
 
 /* ---------- Last 5 Results ---------- */
