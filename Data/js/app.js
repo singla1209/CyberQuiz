@@ -958,10 +958,7 @@ $("celebrate-close").onclick = () => {
   $("celebrate-overlay").style.display = "none";
 };
 
-$("play-again-btn").onclick = () => {
-  $("celebrate-overlay").style.display = "none";
-  show("subjects");
-};
+
 
 /* ---------- Delete My Account (native Android Settings) ---------- */
 // MainActivity calls this function through WebView.evaluateJavascript().
