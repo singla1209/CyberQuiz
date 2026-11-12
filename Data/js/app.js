@@ -432,6 +432,7 @@ function stopTimer() {
 }
 
 /* ---------- Finish quiz ---------- */
+
 async function finishQuiz(){
   clearInterval(timerId);
   $("question").textContent = "All done!";
@@ -441,7 +442,6 @@ async function finishQuiz(){
 
   const timeTakenSec = quizStartMs ? Math.round((Date.now() - quizStartMs)/1000) : 0;
 
- 
   try{
     const current = auth.currentUser;
     if (current) {
@@ -456,24 +456,21 @@ async function finishQuiz(){
         timeTaken: timeTakenSec,
         date: new Date()
       });
-
-            
     }
-  } catch(e){ 
-    console.error("Save failed:", e); 
+  } catch(e){
+    console.error("Save failed:", e);
   }
 
-  $("big-name").textContent = userName || "Great Job!";
-  $("motivation").textContent = `You scored ${correct} out of ${questions.length}!`;
-  $("celebrate-overlay").style.display = "flex";
-  $("celebrate-overlay").removeAttribute("aria-hidden");
-
-  
-  // 🔹 Celebration
   const pct = questions.length ? (correct / questions.length) * 100 : 0;
-  launchCelebration(Math.round(pct));
 
+  if (pct >= 80) {
+    $("celebrate-overlay").removeAttribute("aria-hidden");
+    launchCelebration(pct);
+  } else {
+    $("celebrate-overlay").style.display = "none";
+  }
 }
+
 
 /* ---------- Last 5 Results ---------- */
 
