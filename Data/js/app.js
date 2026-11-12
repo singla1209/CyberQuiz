@@ -252,39 +252,99 @@ async function startChapterQuiz(s, fileName, prettyTitle){
   await beginQuizFromUrl(url, s.label, prettyTitle);
 }
 
+
 async function beginQuizFromUrl(url, subjectLabel, chapterTitle){
   idx = 0; correct = 0; incorrect = 0; questionAnswered = false; responses = [];
   quizStartMs = null;
+
   $("stats").textContent = `✅ Correct: 0  |  ❌ Incorrect: 0`;
-  $("qprogress").textContent = `Question 1/1`;
+  $("qprogress").textContent = `Loading questions...`;
   $("bar-inner").style.width = "0%";
+
   $("welcome-banner").innerHTML =
     `Welcome <span class="name">${userName}</span> in Cyber Quiz App of <span class="name"><b>${subjectLabel}</b></span>`;
+
   show("quiz");
 
-  try{
+  try {
     const res = await fetch(url, {cache:"no-store"});
-    questions = await res.json();
-  } catch(e){
+
+    // Check whether the file was downloaded successfully
+    if (!res.ok) {
+      throw new Error(`HTTP error: ${res.status}`);
+    }
+
+    // Read and validate JSON data
+    const data = await res.json();
+
+    if (!Array.isArray(data)) {
+      throw new Error("Invalid MCQ file format");
+    }
+
+    // Keep only valid MCQs
+    const validQuestions = data.filter(q => {
+      if (!q || typeof q !== "object" || Array.isArray(q)) return false;
+
+      if (typeof q.question !== "string" || !q.question.trim()) return false;
+
+      if (!q.options || typeof q.options !== "object" || Array.isArray(q.options)) return false;
+
+      const requiredKeys = ["A", "B", "C", "D"];
+
+      const validOptions = requiredKeys.every(key =>
+        typeof q.options[key] === "string" && q.options[key].trim() !== ""
+      );
+
+      if (!validOptions) return false;
+
+      if (!requiredKeys.includes(q.correct)) return false;
+
+      return true;
+    });
+
+    const skippedCount = data.length - validQuestions.length;
+
+    questions = validQuestions;
+
+    console.log(`Valid MCQs loaded: ${questions.length}`);
+    console.log(`Invalid MCQs skipped: ${skippedCount}`);
+
+    if (!questions.length) {
+      $("question").textContent = "No valid questions available in this chapter.";
+      $("options").innerHTML = "";
+      $("qprogress").textContent = "0 questions loaded";
+      return;
+    }
+
+    // Shuffle valid questions and their options
+    shuffle(questions);
+
+    questions = questions.map(q => {
+      const entries = Object.entries(q.options).map(([key,text]) => ({key, text}));
+      shuffle(entries);
+      return { ...q, _optionsArr: entries, _correctKey: q.correct };
+    });
+
+    // Display the actual number of valid questions
+    $("qprogress").textContent = `Question 1/${questions.length}`;
+
+    if (skippedCount > 0) {
+      console.warn(`${skippedCount} invalid MCQ(s) were skipped.`);
+    }
+
+    renderQuestion();
+
+  } catch(e) {
     console.error("Fetch questions error", e);
+
     questions = [];
-  }
 
-  if(!questions.length){
-    $("question").textContent = "Could not load questions.";
+    $("question").textContent = "Could not load questions. Please check your internet connection or try again.";
     $("options").innerHTML = "";
-    return;
+    $("qprogress").textContent = "Questions unavailable";
   }
-
-  shuffle(questions);
-  questions = questions.map(q => {
-    const entries = Object.entries(q.options || {}).map(([key,text]) => ({key, text}));
-    shuffle(entries);
-    return { ...q, _optionsArr: entries, _correctKey: q.correct };
-  });
-
-  renderQuestion();
 }
+
 
 function renderQuestion(){
   const q = questions[idx];
