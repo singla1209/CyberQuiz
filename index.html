@@ -32,8 +32,25 @@
   position: relative;
   width: 55px;
   height: 55px;
-  margin: 0 auto 6px;   /* top 0, bottom 6px */
+  margin: 0 auto;
 }
+
+.timer-row {
+  position: relative;
+  margin: 4px 0 6px;
+}
+
+/* speaker sits to the right of the circle, vertically centred with it */
+.timer-row #sound-toggle {
+  position: absolute;
+  left: calc(50% + 42px);
+  top: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translateY(-50%);
+  margin: 0;
+}
+    
 .timer-container svg {
   transform: rotate(-90deg);
   display: block;
@@ -169,18 +186,18 @@
           <div class="muted" id="qprogress" style="text-align:center">Question 1/1</div>
           <div class="bar"><div id="bar-inner"></div></div>
 
-           <!-- 🔊 Speaker Toggle -->
-     <button id="sound-toggle" class="sound-btn" aria-label="Toggle Sound">🔊</button>
-
-          <!-- 🔵 Circular Timer (added here, above the question-card) -->
-          <div class="timer-container">
-           <svg width="55" height="55" viewBox="0 0 110 110">
-              <circle class="bg" cx="55" cy="55" r="50"></circle>
-              <circle class="progress" cx="55" cy="55" r="50"></circle>
-            </svg>
-            <div class="time" id="time-left">30</div>
-          </div>
-          <!-- 🔵 End Timer -->
+          <!-- 🔵 Timer + Speaker in one row -->
+              <div class="timer-row">
+                <div class="timer-container">
+                  <svg width="55" height="55" viewBox="0 0 110 110">
+                    <circle class="bg" cx="55" cy="55" r="50"></circle>
+                    <circle class="progress" cx="55" cy="55" r="50"></circle>
+                  </svg>
+                  <div class="time" id="time-left">30</div>
+                </div>
+                <button id="sound-toggle" class="sound-btn" aria-label="Toggle Sound">🔊</button>
+              </div>
+              <!-- 🔵 End Timer -->
 
           <div class="quiz-card">
             <div id="question">Loading…</div>
