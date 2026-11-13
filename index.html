@@ -27,40 +27,40 @@
     cursor: pointer;
   }
 
-  /* ====== Circular Timer Styles (aligned with JS radius=100) ====== */
-  .timer-container {
-    position: relative;
-    width: 110px;
-    height: 110px;
-    margin: 16px auto;
-  }
-  .timer-container svg {
-    transform: rotate(-90deg);
-    display: block;
-  }
-  .timer-container circle {
-    fill: none;
-    stroke-width: 2;
-    stroke-linecap: round;
-  }
-  .timer-container .bg {
-    stroke: #334155; /* slate-ish */
-  }
-  .timer-container .progress {
-    stroke: #22c55e; /* green start */
-    transition: stroke-dashoffset 1s linear, stroke 0.3s ease;
-  }
-  .timer-container .time {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: #f8fafc;
-    text-align: center;
-    line-height: 1;
-  }
+ /* ====== Circular Timer Styles (aligned with JS radius=50) ====== */
+.timer-container {
+  position: relative;
+  width: 55px;
+  height: 55px;
+  margin: 8px auto;
+}
+.timer-container svg {
+  transform: rotate(-90deg);
+  display: block;
+}
+.timer-container circle {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+.timer-container .bg {
+  stroke: #334155;
+}
+.timer-container .progress {
+  stroke: #22c55e;
+  transition: stroke-dashoffset 1s linear, stroke 0.3s ease;
+}
+.timer-container .time {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #f8fafc;
+  text-align: center;
+  line-height: 1;
+}
   </style>
 </head>
 <body>
@@ -174,7 +174,7 @@
 
           <!-- 🔵 Circular Timer (added here, above the question-card) -->
           <div class="timer-container">
-            <svg width="110" height="110">
+           <svg width="55" height="55" viewBox="0 0 110 110">
               <circle class="bg" cx="55" cy="55" r="50"></circle>
               <circle class="progress" cx="55" cy="55" r="50"></circle>
             </svg>
